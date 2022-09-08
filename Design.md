@@ -8,8 +8,8 @@ The main theme of the site is going to be a serious design, since the site is a 
 
 ## Color scheme
 
-We have created the colour theme according to the RedCross foundation's visual [guidelines](https://www.rodekors.no/om/visuell-profil/).
-![Color Theme](/redcross-aalesund/ColorTheme.jpeg)
+We have created the colour theme according to the RedCross foundation's visual
+![Color Theme](/assets/StrynEsport.jpeg)
 
 ## Hierarchy and layout
 
