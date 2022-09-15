@@ -25,10 +25,11 @@ The icons color should follow the [color theme](#color-scheme).
 
 ## Typography
 
-We will be using Myriad Pro as it is the official font of the Red Cross, and we think it is a good font to represent our ides and values.
-
-We will be using Bold font for titles hand headlines. and thin/regular for the paragraphs.
+The app will be using Roboto as the standard font. With font size 14 and font weight 400 as default. 
 
 ## Border rounding
 
-## Shadows
+In the app we will have rounded corners with a value of 10 on buttons and widgets. This will create a more playfull feel of the app  
+
+
+
