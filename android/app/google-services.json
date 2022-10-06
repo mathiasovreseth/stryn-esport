@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "206835097238",
+    "project_id": "strynesport-624d5",
+    "storage_bucket": "strynesport-624d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206835097238:android:214ccd22dc8d5683796cb7",
+        "android_client_info": {
+          "package_name": "com.example.stryn_esport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206835097238-gpcmgu4qs39kl7bclt0cu8hr40dgh2tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBacjaQfTabHOM7sk2jDZRVX-fDIleS6OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206835097238-gpcmgu4qs39kl7bclt0cu8hr40dgh2tk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "206835097238-8m3prcui7knc6nvg0ibi2nhgk84nuklh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "no.strynesport.strynEsport"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206835097238:android:d3c81d62c50b6e29796cb7",
+        "android_client_info": {
+          "package_name": "no.strynesport.stryn_esport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206835097238-gpcmgu4qs39kl7bclt0cu8hr40dgh2tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBacjaQfTabHOM7sk2jDZRVX-fDIleS6OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206835097238-gpcmgu4qs39kl7bclt0cu8hr40dgh2tk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "206835097238-8m3prcui7knc6nvg0ibi2nhgk84nuklh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "no.strynesport.strynEsport"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

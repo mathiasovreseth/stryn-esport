@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>206835097238-klatolc1rigpsq3vsq7ftre2sua8no84.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.206835097238-klatolc1rigpsq3vsq7ftre2sua8no84</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBHyLggCAtnuJ0s2VSMY0BOSUKqEGAlLc4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>206835097238</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.strynEsport</string>
+	<key>PROJECT_ID</key>
+	<string>strynesport-624d5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>strynesport-624d5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:206835097238:ios:bb1082b8895abbef796cb7</string>
+</dict>
+</plist>
