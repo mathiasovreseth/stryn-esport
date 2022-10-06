@@ -7,7 +7,7 @@ The main theme of this app is going to be playful, but still the app is going to
 ## Color scheme
 
 We have created the color theme according to the theme and the targeted group using the app.
-![Color Theme](/assets/StrynEsport.jpeg)
+![Color Theme](/assets/images/StrynEsport.jpeg)
 
 ## Hierarchy and layout
 
