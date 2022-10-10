@@ -1,4 +1,5 @@
 import 'package:formz/formz.dart';
+import 'package:intl/intl.dart';
 
 /// Validation errors for the [Password] [FormzInput].
 enum PasswordValidationError {
@@ -52,5 +53,132 @@ class Email extends FormzInput<String, EmailValidationError> {
     return _emailRegExp.hasMatch(value ?? '')
         ? null
         : EmailValidationError.invalid;
+  }
+}
+/// Validation errors for the [ConfirmedPassword] [FormzInput].
+enum ConfirmedPasswordValidationError {
+  /// Generic invalid error.
+  invalid
+}
+
+/// {@template confirmed_password}
+/// Form input for a confirmed password input.
+/// {@endtemplate}
+class ConfirmedPassword
+    extends FormzInput<String, ConfirmedPasswordValidationError> {
+  /// {@macro confirmed_password}
+  const ConfirmedPassword.pure({this.password = ''}) : super.pure('');
+
+  /// {@macro confirmed_password}
+  const ConfirmedPassword.dirty({required this.password, String value = ''})
+      : super.dirty(value);
+
+  /// The original password.
+  final String password;
+
+  @override
+  ConfirmedPasswordValidationError? validator(String value) {
+    return password == value ? null : ConfirmedPasswordValidationError.invalid;
+  }
+}
+
+/// Validation errors for the [Name] [FormzInput].
+enum NameValidationError {
+  /// Generic invalid error.
+  invalid
+}
+
+/// {@template name}
+/// Form input for a name input.
+/// {@endtemplate}
+class Name extends FormzInput<String, NameValidationError> {
+  /// {@macro name}
+  const Name.pure() : super.pure('');
+
+  /// {@macro name}
+  const Name.dirty([String value = '']) : super.dirty(value);
+
+  static final RegExp _nameRegExp = RegExp(
+    "[a-z']{2,10}",
+  );
+
+  @override
+  NameValidationError? validator(String value) {
+    return _nameRegExp.hasMatch(value) ? null : NameValidationError.invalid;
+  }
+}
+
+/// Validation errors for the [PhoneNumber] [FormzInput].
+enum PhoneNumberValidationError {
+  /// Generic invalid error.
+  invalid
+}
+
+/// {@template name}
+/// Form input for a name input.
+/// {@endtemplate}
+class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
+  /// {@macro name}
+  const PhoneNumber.pure() : super.pure('');
+
+  /// {@macro name}
+  const PhoneNumber.dirty([String value = '']) : super.dirty(value);
+
+  static final RegExp _phoneNumberRegExp = RegExp(r'^[0-9]{8}$');
+
+  @override
+  PhoneNumberValidationError? validator(String value) {
+    // return null;
+    return _phoneNumberRegExp.hasMatch(value)
+        ? null
+        : PhoneNumberValidationError.invalid;
+  }
+}
+
+/// Validation errors for the [Address] [FormzInput].
+enum AddressValidationError {
+  /// Generic invalid error.
+  invalid
+}
+
+/// {@template name}
+/// Form input for a name input.
+/// {@endtemplate}
+class Address extends FormzInput<String, AddressValidationError> {
+  /// {@macro name}
+  const Address.pure() : super.pure('');
+
+  /// {@macro name}
+  const Address.dirty([String value = '']) : super.dirty(value);
+
+  @override
+  AddressValidationError? validator(String value) {
+    return value.isNotEmpty ? null : AddressValidationError.invalid;
+  }
+}
+
+/// Validation errors for the [PostNumber] [FormzInput].
+enum PostNumberValidationError {
+  /// Generic invalid error.
+  invalid
+}
+
+/// {@template name}
+/// Form input for a name input.
+/// {@endtemplate}
+class PostNumber extends FormzInput<String, PostNumberValidationError> {
+  /// {@macro name}
+  const PostNumber.pure() : super.pure('');
+
+  /// {@macro name}
+  const PostNumber.dirty([String value = '']) : super.dirty(value);
+
+  static final RegExp _postNumberRegExp = RegExp(r'^[0-9]{4}$');
+
+  @override
+  PostNumberValidationError? validator(String value) {
+    return _postNumberRegExp.hasMatch(value)
+        ? null
+        : PostNumberValidationError.invalid;
   }
 }
