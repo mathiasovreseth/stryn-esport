@@ -6,6 +6,7 @@ import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_state.dart';
 import 'package:stryn_esport/pages/registration/stageOne/registration_stage_one.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'package:stryn_esport/styles/text_input_style.dart';
 
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
@@ -120,26 +121,13 @@ class _EmailInput extends StatelessWidget {
           key: const Key('loginForm_emailInput_textField'),
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            suffixIconConstraints:
-            const BoxConstraints(minHeight: 24, minWidth: 24),
-            suffixIcon: SvgPicture.asset(
-              'assets/icons/email_small.svg',
-              color: Theme
-                  .of(context)
-                  .primaryColor,
-              width: 24,
-              height: 24,
-              allowDrawingOutsideViewBox: false,
-              fit: BoxFit.contain,
-            ),
-            labelText: 'E-post',
-            labelStyle: Theme
-                .of(context)
-                .primaryTextTheme
-                .labelMedium,
-            hintText: 'E-post...',
-            errorText: state.email.invalid ? 'invalid email' : null,
+          decoration: textFormDecoration(
+              hintText: 'E-post...',
+              context: context,
+              errorText: state.email.invalid ? 'invalid email' : null,
+              label: 'E-post',
+              suffixIcon: 'assets/icons/email_small.svg',
+
           ),
         );
       },
@@ -156,28 +144,14 @@ class _PasswordInput extends StatelessWidget {
         return TextField(
           textInputAction: TextInputAction.done,
           key: const Key('loginForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<LoginCubit>().passwordChanged(password),
+          onChanged: (password) => context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'Passord',
-            labelStyle: Theme
-                .of(context)
-                .primaryTextTheme
-                .labelMedium,
-            suffixIconConstraints:
-            const BoxConstraints(minHeight: 24, minWidth: 24),
-            suffixIcon: SvgPicture.asset(
-              'assets/icons/lock_small.svg',
-              color: Theme
-                  .of(context)
-                  .primaryColor,
-              allowDrawingOutsideViewBox: false,
-              width: 24,
-              height: 24,
-            ),
+          decoration: textFormDecoration(
             hintText: 'Passord...',
+            context: context,
             errorText: state.password.invalid ? 'invalid password' : null,
+            label: 'Passord',
+            suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
       },

@@ -8,6 +8,7 @@ import 'package:stryn_esport/pages/registration/stageOne/bloc/registration_stage
 import 'package:stryn_esport/pages/registration/stageOne/bloc/registration_step_one_cubit.dart';
 import 'package:stryn_esport/pages/registration/stageTwo/registration_stage_two.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'package:stryn_esport/styles/text_input_style.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
@@ -29,7 +30,6 @@ class RegistrationFormStageOne extends StatefulWidget {
 }
 
 class _RegistrationFormStageOneState extends State<RegistrationFormStageOne> {
-  final bool _emailTaken = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,20 +87,14 @@ class _EmailInput extends StatelessWidget {
         return TextField(
           textInputAction: TextInputAction.next,
           key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) =>
-              context.read<RegistrationStageOneCubit>().emailChanged(email),
+          onChanged: (email) => context.read<RegistrationStageOneCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: 'E-post',
-            suffixIcon: SvgPicture.asset(
-              'assets/icons/email_small.svg',
-              color: Colors.white,
-              width: 16,
-              height: 16,
-            ),
+          decoration: textFormDecoration(
             hintText: 'E-post...',
-            labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
+            context: context,
             errorText: state.email.invalid ? 'invalid email' : null,
+            label: 'E-post',
+            suffixIcon: 'assets/icons/email_small.svg',
           ),
         );
       },
@@ -121,17 +115,12 @@ class _PasswordInput extends StatelessWidget {
               .read<RegistrationStageOneCubit>()
               .passwordChanged(password),
           obscureText: true,
-          decoration: InputDecoration(
-            suffixIcon: SvgPicture.asset(
-              'assets/icons/lock_small.svg',
-              color: Colors.white,
-              width: 16,
-              height: 16,
-            ),
-            labelText: 'Passord',
-            labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
-            hintText: 'Passord',
+          decoration: textFormDecoration(
+            hintText: 'Passord...',
+            context: context,
             errorText: state.password.invalid ? 'invalid password' : null,
+            label: 'Passord',
+            suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
       },
@@ -154,19 +143,12 @@ class _ConfirmPasswordInput extends StatelessWidget {
               .read<RegistrationStageOneCubit>()
               .confirmedPasswordChanged(confirmPassword),
           obscureText: true,
-          decoration: InputDecoration(
-            suffixIcon: SvgPicture.asset(
-              'assets/icons/lock_small.svg',
-              color: Colors.white,
-              width: 16,
-              height: 16,
-            ),
-            labelText: 'Bekreft passord',
-            labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
-            hintText: 'Bekreft passord',
-            errorText: state.confirmedPassword.invalid
-                ? 'passwords do not match'
-                : null,
+          decoration: textFormDecoration(
+            hintText: 'Bekreft passord...',
+            context: context,
+            errorText: state.confirmedPassword.invalid ? 'passwords do not match' : null,
+            label: 'Bekreft passord',
+            suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
       },

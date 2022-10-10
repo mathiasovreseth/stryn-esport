@@ -80,8 +80,7 @@ class RegistrationFormStageTwo extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
