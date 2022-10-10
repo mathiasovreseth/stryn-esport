@@ -48,6 +48,7 @@ dependencies:
   flow_builder: ^0.0.9
   formz: ^0.4.1
   getwidget: ^3.0.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
