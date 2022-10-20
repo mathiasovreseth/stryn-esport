@@ -15,7 +15,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email,]),
+        status: Formz.validate([email]),
       ),
     );
   }

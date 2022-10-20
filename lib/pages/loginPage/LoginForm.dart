@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_state.dart';
+import 'package:stryn_esport/pages/registration/forgot_password/forgot_password_form.dart';
 import 'package:stryn_esport/pages/registration/stageOne/registration_stage_one.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 import 'package:stryn_esport/styles/text_input_style.dart';
@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   );
               }
             },
-            child:   Container(
+            child: Container(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +60,29 @@ class LoginPage extends StatelessWidget {
                         _PasswordInput(),
                         // add forgot password her
                         const VerticalSpacer(height: 12),
-                        _LoginButton(),
+                        Row(
+                          children: [
+                            Expanded(
+                             child: _LoginButton(),
+                            ),
+                            Expanded(child:
+                            TextButton(
+                              child: Text(
+                                "Glømt passord",
+                                style: TextStyle(color: Theme
+                                    .of(context)
+                                    .primaryColor),
+                              ),
+                              onPressed: () =>
+                              {
+                                Navigator.of(context)
+                                    .push(ForgotPasswordForm.route()),
+                              },
+                            ),
+                            ),
+                          ],
+                        )
+
                       ],
                     ),
                     TextButton(
@@ -85,7 +107,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
 class _TitleAndImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
