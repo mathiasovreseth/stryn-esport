@@ -48,7 +48,17 @@ class AuthenticationRepository {
         .map((event) => MyUser.fromQueryDocumentSnapshot(event));
   }
 
+  Future<void> resetPasswordLink(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch(e) {
+      throw EmailFailure.fromCode(e.code);
+    } catch(_) {
+      throw const EmailFailure();
 
+    }
+
+  }
 
   /// Signs in with the provided [email] and [password].
   ///
@@ -165,6 +175,25 @@ class AuthenticationRepository {
       throw LogOutFailure();
     }
   }
+}
+
+class EmailFailure implements Exception {
+  const EmailFailure([
+    this.message = "An unknown exception occurred.",
+  ]);
+
+  factory EmailFailure.fromCode(String code) {
+    switch (code) {
+      case 'invalid-email':
+        return const EmailFailure('Email is not valid or badly formatted',);
+      case 'user-not-found':
+        return const EmailFailure('No user corresponding to the email',);
+      default:
+        return const EmailFailure();
+    }
+  }
+
+  final String message;
 }
 
 // TODO add photo to user and username maybe
