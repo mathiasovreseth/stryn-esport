@@ -7,8 +7,7 @@ abstract class Database {
 }
 
 class FirestoreDatabase implements Database {
-  FirestoreDatabase({required this.id});
-  final String id;
+  FirestoreDatabase();
 
   final _service = FirestoreService.instance;
 
