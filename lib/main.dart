@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:stryn_esport/pages/profile_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:stryn_esport/pages/app/app.dart';
+import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      home: ProfilePage(),
-    );
-  }
+  final authRepository = AuthenticationRepository();
+  await authRepository.user.first;
+  BlocOverrides.runZoned(
+        () => runApp(App(authenticationRepository: authRepository)),
+    // blocObserver: AppBlocObserver(),
+  );
 }
 
