@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
+import 'package:stryn_esport/pages/app/bloc/app_state.dart';
+import 'package:stryn_esport/widgets/spacer.dart';
 
-import '../models/booking_models.dart';
+import '../../models/booking_models.dart';
+import '../loginPage/bloc/login_cubit.dart';
+import '../loginPage/bloc/login_state.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -28,7 +36,6 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         title: const Text("Min Profil", style: TextStyle(color: Colors.black),)),
         body: _buildContent() ,
-      backgroundColor: const Color(0xfff3f3f3),
     );
   }
 
@@ -36,15 +43,13 @@ class _ProfilePageState extends State<ProfilePage> {
     return Padding(padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
       child: ListView(
         children: [
-          Container(
-            height: 150,
-            color: Colors.cyan,
-            child: const Text("temp! insert ProfileInfo widget"),
-          ),
+          _UserTitleImage(),
+          const VerticalSpacer(height: 20,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children:  [
-              const Text("Mine bookings"),
+              const Text("Mine bookings", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),),
+              const VerticalSpacer(height: 20,),
               for (Booking booking in bookings)
                 _bookedItem(booking)
             ],
@@ -77,11 +82,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           ClipPath(
-            clipper: ImagePath(),
+            clipper: _ImagePath(),
             child: Container( //Image
               height: 60,
               width: 169,
               color: Colors.brown,
+              //TODO: insert image of station
             ),
           ),
         ],
@@ -90,7 +96,53 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-class ImagePath extends CustomClipper<Path> {
+class _UserTitleImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+   return Stack(
+     children: [
+       Container(
+         margin: const EdgeInsets.only(top:60),
+         height: 180,
+         decoration: BoxDecoration(
+           border: Border.all(width: 2, color: Colors.white),
+           borderRadius: BorderRadius.circular(10),
+           color: Colors.white,
+         ),
+         child:
+         BlocBuilder<AppBloc, AppState>(
+           buildWhen: (previous, current) => previous.user != current.user,
+           builder: (context, state) {
+             return Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               children: [
+                 VerticalSpacer(height: 80,),
+                 Text("${context.read<AppBloc>().state.user.firstName!} ${context.read<AppBloc>().state.user.lastName!}" ,textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),),
+                 VerticalSpacer(height: 10,),
+                 Text(context.read<AppBloc>().state.user.hasMembership!?"Er medlem":"Er ikke medlem",textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 16),),
+               ],
+             );
+           },
+         ),
+       ),
+       Align(
+         alignment: Alignment.center,
+        child:
+        Container(
+          height: 120,
+          width: 120,
+          decoration: BoxDecoration(
+            border: Border.all(width: 2,),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.asset('assets/images/logo.png')
+        ),
+       ),
+     ],
+   );
+  }}
+
+class _ImagePath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     double w = size.width;
