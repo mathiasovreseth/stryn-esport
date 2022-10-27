@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
-import '../../../common/widgets/arrow_back_header_bar.dart';
 import '../../../styles/text_input_style.dart';
 import '../../../widgets/appBars/arrow_back_app_bar.dart';
 import '../../../widgets/loading_indicator.dart';
