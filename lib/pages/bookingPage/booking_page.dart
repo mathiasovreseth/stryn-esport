@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/appBars/custom_app_bar.dart';
+
 class BookingPage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
@@ -9,7 +11,10 @@ class BookingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      appBar: CustomAppBar(
+        headerText: 'Book stasjoner',
+      ),
+    );
   }
-
 }
