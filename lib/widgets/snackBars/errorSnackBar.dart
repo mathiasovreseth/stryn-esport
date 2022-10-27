@@ -11,3 +11,10 @@ SnackBar createErrorSnackBar(String content) {
       content: Text(content, style: const TextStyle(color: Colors.red, fontSize: 16),),
   );
 }
+
+SnackBar infoSnackBar(String content) {
+  return SnackBar(
+    backgroundColor: Colors.blue,
+    duration: const Duration(seconds: 5),
+    content: Text(content, style: const TextStyle(color: Colors.white,fontSize: 16), textAlign: TextAlign.center,),);
+}
