@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stryn_esport/pages/settings/change_password.dart/change_password.dart';
 
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/buttons/my_text_button.dart';
@@ -80,7 +81,9 @@ class _ChangePasswordButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyTextButton(
-                onPressed: () => {},
+                onPressed: () => {
+                      Navigator.of(context).push(ChangePasswordPage.route()),
+                    },
                 child: Text("Endre passord",
                     style: Theme.of(context).textTheme.subtitle2)),
             SvgPicture.asset(

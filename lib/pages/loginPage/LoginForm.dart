@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
                           const VerticalSpacer(),
                           _PasswordInput(),
                           // add forgot password her
-                          const VerticalSpacer(height: 12),
+                          const VerticalSpacer(),
                           Row(
                             children: [
                               Expanded(
