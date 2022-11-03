@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stryn_esport/pages/settings/change_password.dart/change_password.dart';
+import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_cubit.dart';
+import 'package:stryn_esport/pages/settings/edit_user_information.dart/edit_user_information.dart';
 
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/buttons/my_text_button.dart';
@@ -55,7 +57,8 @@ class _EditInformationButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyTextButton(
-                onPressed: () => {},
+                onPressed: () => Navigator.of(context)
+                    .push(ChangeUserInformationPage.route()),
                 child: Text("Rediger personalia",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(
@@ -81,9 +84,8 @@ class _ChangePasswordButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyTextButton(
-                onPressed: () => {
-                      Navigator.of(context).push(ChangePasswordPage.route()),
-                    },
+                onPressed: () =>
+                    Navigator.of(context).push(ChangePasswordPage.route()),
                 child: Text("Endre passord",
                     style: Theme.of(context).textTheme.subtitle2)),
             SvgPicture.asset(
