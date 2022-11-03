@@ -9,11 +9,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   final authRepository = AuthenticationRepository();
   await authRepository.user.first;
+
   BlocOverrides.runZoned(
-        () => runApp(App(authenticationRepository: authRepository)),
+    () => runApp(App(authenticationRepository: authRepository)),
     // blocObserver: AppBlocObserver(),
   );
 }

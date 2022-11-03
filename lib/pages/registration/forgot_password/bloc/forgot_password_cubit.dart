@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
@@ -12,7 +13,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
 
   void emailChange(String value) {
     final email = Email.dirty(value);
-    emit(
+   emit(
       state.copyWith(
         email: email,
         status: Formz.validate([email]),

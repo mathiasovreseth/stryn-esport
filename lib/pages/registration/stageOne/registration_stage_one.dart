@@ -30,7 +30,6 @@ class RegistrationFormStageOne extends StatefulWidget {
 }
 
 class _RegistrationFormStageOneState extends State<RegistrationFormStageOne> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +48,8 @@ class _RegistrationFormStageOneState extends State<RegistrationFormStageOne> {
                     previous.status != current.status,
                 listener: (context, state) {
                   if (state.status.isSubmissionSuccess) {
-                    Navigator.of(context).push(RegistrationFormStageTwo.route(state.email.value, state.password.value));
+                    Navigator.of(context).push(RegistrationFormStageTwo.route(
+                        state.email.value, state.password.value));
                   } else if (state.status.isSubmissionFailure) {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
@@ -87,7 +87,8 @@ class _EmailInput extends StatelessWidget {
         return TextField(
           textInputAction: TextInputAction.next,
           key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) => context.read<RegistrationStageOneCubit>().emailChanged(email),
+          onChanged: (email) =>
+              context.read<RegistrationStageOneCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
             hintText: 'E-post...',
@@ -146,7 +147,9 @@ class _ConfirmPasswordInput extends StatelessWidget {
           decoration: textFormDecoration(
             hintText: 'Bekreft passord...',
             context: context,
-            errorText: state.confirmedPassword.invalid ? 'passwords do not match' : null,
+            errorText: state.confirmedPassword.invalid
+                ? 'passwords do not match'
+                : null,
             label: 'Bekreft passord',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
