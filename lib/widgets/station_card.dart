@@ -9,19 +9,26 @@ class StationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return Card(
-     clipBehavior: Clip.hardEdge,
-     child: InkWell(
-       splashColor: Colors.blue.withAlpha(30),
-       onTap: () {
-         debugPrint('Card tapped.');
-       },
-       child: SizedBox(
-         width: 300,
-         height: 100,
-         child: Text(station.name),
-       ),
-     ),
-   );
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: InkWell(
+        splashColor: Colors.black.withAlpha(80),
+        onTap: () {
+          debugPrint("test");
+        },
+        child: ColorFiltered(
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.35), BlendMode.darken),
+          child: Image.network(
+            station.image,
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -39,10 +39,11 @@ class BookingPage extends StatelessWidget {
         if (state.status == Status.success) {
           final stations = state.stations;
           return GridView.count(
-          crossAxisCount: 2,
-          children: [
-            for (final child in stations) StationCard(station: child)
-          ]);
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 2,
+              children: [
+                for (final child in stations) StationCard(station: child)
+              ]);
         } else {
           return const LoadingIndicator();
         }
