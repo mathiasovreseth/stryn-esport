@@ -1,10 +1,8 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_state.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
-
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
