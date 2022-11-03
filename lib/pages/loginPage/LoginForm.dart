@@ -27,86 +27,81 @@ class LoginPage extends StatelessWidget {
         create: (BuildContext context) =>
             LoginCubit(AuthenticationRepository()),
         child: Form(
-          key: _formKey,
-          child: BlocListener<LoginCubit, LoginState>(
-            listenWhen: (previous, current) =>
-            previous.status != current.status,
-            listener: (context, state) {
-              if (state.status.isSubmissionSuccess) {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              } else if (state.status.isSubmissionFailure) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    createErrorSnackBar(
-                        state.errorMessage ?? 'Authentication Failure'),
-                  );
-              }
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const VerticalSpacer(height: 66),
-                        _TitleAndImage(),
-                        const VerticalSpacer(height: 34),
-                        _EmailInput(),
-                        const VerticalSpacer(),
-                        _PasswordInput(),
-                        // add forgot password her
-                        const VerticalSpacer(height: 12),
-                        Row(
-                          children: [
-                            Expanded(
-                             child: _LoginButton(),
-                            ),
-                            Expanded(child:
-                            TextButton(
-                              child: Text(
-                                "Glømt passord",
-                                style: TextStyle(color: Theme
-                                    .of(context)
-                                    .primaryColor),
+            key: _formKey,
+            child: BlocListener<LoginCubit, LoginState>(
+              listenWhen: (previous, current) =>
+                  previous.status != current.status,
+              listener: (context, state) {
+                if (state.status.isSubmissionSuccess) {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                } else if (state.status.isSubmissionFailure) {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      createErrorSnackBar(
+                          state.errorMessage ?? 'Authentication Failure'),
+                    );
+                }
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const VerticalSpacer(height: 66),
+                          _TitleAndImage(),
+                          const VerticalSpacer(height: 34),
+                          _EmailInput(),
+                          const VerticalSpacer(),
+                          _PasswordInput(),
+                          // add forgot password her
+                          const VerticalSpacer(height: 12),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _LoginButton(),
                               ),
-                              onPressed: () =>
-                              {
-                                Navigator.of(context)
-                                    .push(ForgotPasswordForm.route()),
-                              },
-                            ),
-                            ),
-                          ],
-                        )
-
-                      ],
-                    ),
-                    TextButton(
-                      child: Text(
-                        "Har du ikkje bruker? Registrer deg",
-                        style: TextStyle(color: Theme
-                            .of(context)
-                            .primaryColor),
+                              Expanded(
+                                child: TextButton(
+                                  child: Text(
+                                    "Glømt passord",
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                  onPressed: () => {
+                                    Navigator.of(context)
+                                        .push(ForgotPasswordForm.route()),
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                      onPressed: () =>
-                      {
-                        Navigator.of(context)
-                            .push(RegistrationFormStageOne.route()),
-                      },
-                    ),
-                  ]),
-            ),
-          )
-
-        ),
+                      TextButton(
+                        child: Text(
+                          "Har du ikkje bruker? Registrer deg",
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                        onPressed: () => {
+                          Navigator.of(context)
+                              .push(RegistrationFormStageOne.route()),
+                        },
+                      ),
+                    ]),
+              ),
+            )),
       ),
     );
   }
 }
+
 class _TitleAndImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -143,12 +138,11 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
-              hintText: 'E-post...',
-              context: context,
-              errorText: state.email.invalid ? 'invalid email' : null,
-              label: 'E-post',
-              suffixIcon: 'assets/icons/email_small.svg',
-
+            hintText: 'E-post...',
+            context: context,
+            errorText: state.email.invalid ? 'invalid email' : null,
+            label: 'E-post',
+            suffixIcon: 'assets/icons/email_small.svg',
           ),
         );
       },
@@ -165,7 +159,8 @@ class _PasswordInput extends StatelessWidget {
         return TextField(
           textInputAction: TextInputAction.done,
           key: const Key('loginForm_passwordInput_textField'),
-          onChanged: (password) => context.read<LoginCubit>().passwordChanged(password),
+          onChanged: (password) =>
+              context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: textFormDecoration(
             hintText: 'Passord...',
@@ -181,7 +176,6 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _LoginButton extends StatelessWidget {
-
   void unFocusTextField(BuildContext context) {
     final FocusScopeNode currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
@@ -197,12 +191,15 @@ class _LoginButton extends StatelessWidget {
         return state.status.isSubmissionInProgress
             ? const LoadingIndicator()
             : ElevatedButton(
-            key: const Key('loginForm_continue_raisedButton'),
-            onPressed: state.status.isValidated ? () {
-              unFocusTextField(context);
-              context.read<LoginCubit>().logInWithCredentials();
-            } : null,
-            child: const Text('LOGIN'),);
+                key: const Key('loginForm_continue_raisedButton'),
+                onPressed: state.status.isValidated
+                    ? () {
+                        unFocusTextField(context);
+                        context.read<LoginCubit>().logInWithCredentials();
+                      }
+                    : null,
+                child: const Text('LOGIN'),
+              );
       },
     );
   }
