@@ -8,6 +8,7 @@ import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import '../../services/database.dart';
 import '../../widgets/appBars/custom_app_bar.dart';
+import '../../widgets/station_card.dart';
 
 class BookingPage extends StatelessWidget {
   static Route route() {
@@ -24,7 +25,10 @@ class BookingPage extends StatelessWidget {
         appBar: const CustomAppBar(
           headerText: 'Book stasjoner',
         ),
-        body: _buildContents(context),
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: _buildContents(context),
+        ), //_buildContents(context)
       ),
     );
   }
@@ -34,8 +38,9 @@ class BookingPage extends StatelessWidget {
       builder: (context, state) {
         if (state.status == Status.success) {
           final stations = state.stations;
-          final children = stations.map((station) => Text(station.name)).toList();
-          return ListView(children: children);
+          return ListView(children: [
+            for (final child in stations) StationCard(station: child)
+          ]);
         } else {
           return const LoadingIndicator();
         }
