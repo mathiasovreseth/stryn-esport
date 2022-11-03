@@ -38,7 +38,9 @@ class BookingPage extends StatelessWidget {
       builder: (context, state) {
         if (state.status == Status.success) {
           final stations = state.stations;
-          return ListView(children: [
+          return GridView.count(
+          crossAxisCount: 2,
+          children: [
             for (final child in stations) StationCard(station: child)
           ]);
         } else {
