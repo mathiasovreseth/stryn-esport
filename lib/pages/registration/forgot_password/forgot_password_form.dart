@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 
 import '../../../styles/text_input_style.dart';
 import '../../../widgets/appBars/arrow_back_app_bar.dart';
@@ -37,6 +38,20 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           resizeToAvoidBottomInset: false,
       body: BlocProvider(
         create: (BuildContext context) => ForgotPasswordCubit(AuthenticationRepository()),
+        child: BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
+          listenWhen: (previous, current) =>
+          previous.status != current.status,
+          listener: (context, state) {
+            if (state.status.isSubmissionSuccess) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(infoSnackBar('Password reset sent'));
+            } else if (state.status.isSubmissionFailure) {
+              ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(createErrorSnackBar(state.errorMessage ?? 'Failure'));
+            }
+          },
         child: Form(
           key: widget._formKey,
           child: Container(
@@ -47,19 +62,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 Divider(height: 12, color: Theme.of(context).backgroundColor),
                 _ResettButton(),
                 Divider(height: 12, color: Theme.of(context).backgroundColor),
-                if(_success)
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 12),
-                      child: const Text('Ein e-post er sendt til deg for å tilbakestille passord', style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                Divider(height: 12, color: Theme.of(context).backgroundColor),
               ],
             ),
           ),
         ),
+      ),
       ),
     );
   }
@@ -99,7 +106,9 @@ class _ResettButton extends StatelessWidget {
             ? const LoadingIndicator()
                 : ElevatedButton(
                 key: const Key('forgot_password_form_submit'),
-                onPressed: () {},
+                onPressed: state.status.isValidated ? () {
+                    context.read<ForgotPasswordCubit>().sendEmail();
+                  } : null,
                 child: const Text('Send nytt passord'),);
 
     },);
