@@ -105,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 topLeft: Radius.circular(10), bottomLeft: Radius.circular(10))),
         margin: const EdgeInsets.only(top: 16),
         child: Column(children: <Widget>[
-          Text("Fordeler"),
+          const Text("Fordeler", style: TextStyle(color: Colors.black, fontSize: 20)),
           for (String string in bulletListAdvantages)
             _createBulletListItem(string)
         ]),
