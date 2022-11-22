@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AppBloc>().add(LoadUserInfo());
-    return ProfilePage();
+    context.read<AppBloc>().add(const LoadUserInfo());
+    return const ProfilePage();
   }
 }

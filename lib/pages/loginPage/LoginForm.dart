@@ -24,8 +24,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (BuildContext context) =>
-            LoginCubit(AuthenticationRepository()),
+        create: (BuildContext context) => LoginCubit(AuthenticationRepository()),
         child: Form(
             key: _formKey,
             child: BlocListener<LoginCubit, LoginState>(

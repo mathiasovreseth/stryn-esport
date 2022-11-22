@@ -81,6 +81,25 @@ class MyUser extends Equatable {
         postNumber = snapshot.get('postNumber') ?? "undefined",
         club = snapshot.get('club') ?? "Stryn",
         hasMembership = snapshot.get('hasMembership') ?? false;
+}
+/// template of what fields are required for updating a user document
+/// used when editing a user
+class UpdatedUser {
+  final String id;
+  final String? firstName;
+  final String? lastName;
+  final DateTime? age;
+  final String? address;
+  final String? phoneNumber;
+  final String? postNumber;
 
-
+  const UpdatedUser({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.age,
+    required this.address,
+    required this.phoneNumber,
+    required this.postNumber,
+  });
 }
