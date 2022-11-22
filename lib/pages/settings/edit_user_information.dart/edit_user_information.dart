@@ -8,6 +8,7 @@ import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_cubit.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_state.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'package:stryn_esport/repositories/firebase_user_repository.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/datePicker/custom_date_picker.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
@@ -36,7 +37,7 @@ class ChangeUserInformationPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: BlocProvider(
           create: (_) => EditUserInformationCubit(
-              authenticationRepository: AuthenticationRepository(),
+              userRepository: FirebaseUserRepository(),
               user: context.read<AppBloc>().state.user),
           child: Form(
               key: _formKey,
@@ -46,8 +47,14 @@ class ChangeUserInformationPage extends StatelessWidget {
                       previous.status != current.status,
                   listener: (context, state) {
                     if (state.status.isSubmissionSuccess) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          createSuccessSnackBar(
+                              'Profile updated!', context),
+                        );
                       Navigator.of(context).pop();
-                      Navigator.of(context).pop();
+
                     } else if (state.status.isSubmissionFailure) {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
@@ -188,13 +195,14 @@ class _PhoneInput extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.phoneNumber != current.phoneNumber,
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
           textInputAction: TextInputAction.next,
           key: const Key('edit_profile_phone_textField'),
           onChanged: (phoneNumber) => context
               .read<EditUserInformationCubit>()
               .phoneNumberChange(phoneNumber),
           onEditingComplete: () => onEditComplete(context),
+          initialValue: state.phoneNumber.value,
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
             labelText: 'Telefon-nummer',
@@ -221,12 +229,13 @@ class _AddressInput extends StatelessWidget {
     return BlocBuilder<EditUserInformationCubit, EditUserInformationState>(
       buildWhen: (previous, current) => previous.address != current.address,
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
           textInputAction: TextInputAction.next,
           key: const Key('edit_profile_address_textField'),
           onChanged: (address) =>
               context.read<EditUserInformationCubit>().addressChange(address),
           keyboardType: TextInputType.name,
+          initialValue: state.address.value,
           decoration: InputDecoration(
             labelText: 'Adresse',
             suffixIcon: SvgPicture.asset(
@@ -252,13 +261,14 @@ class _PostNumberInput extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.postNumber != current.postNumber,
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
           textInputAction: TextInputAction.done,
           key: const Key('edit_profile_number_textField'),
           onChanged: (postNumber) => context
               .read<EditUserInformationCubit>()
               .postNumberChange(postNumber),
           keyboardType: TextInputType.name,
+          initialValue: state.postNumber.value,
           decoration: InputDecoration(
             labelText: 'Post-nr',
             suffixIcon: SvgPicture.asset(
@@ -311,7 +321,7 @@ class _AgeInput extends StatelessWidget {
                             ? "Velg alder"
                             : formatDate(state.age!),
                         style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 18,
                             color: Color(0xffB2B0B4),
                             fontWeight: FontWeight.w400)),
                   ],
@@ -358,7 +368,7 @@ class _SignUpButton extends StatelessWidget {
                       .signUpFormSubmitted();
                 }
               : null,
-          child: const Text('SIGN UP'),
+          child: const Text('Bekreft endringer'),
         );
       },
     );

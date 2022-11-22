@@ -6,10 +6,11 @@ import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_state.dart';
 
 import 'package:stryn_esport/repositories/auth_repository.dart';
+import 'package:stryn_esport/repositories/user_repository.dart';
 
 class EditUserInformationCubit extends Cubit<EditUserInformationState> {
   EditUserInformationCubit(
-      {required this.authenticationRepository, required this.user})
+      {required this.userRepository, required this.user})
       : super(EditUserInformationState(
             firstName: Name.dirty(user.firstName!),
             lastName: Name.dirty(user.lastName!),
@@ -19,7 +20,7 @@ class EditUserInformationCubit extends Cubit<EditUserInformationState> {
             address: Address.dirty(user.address!),
             postNumber: PostNumber.dirty(user.postNumber!)));
 
-  final AuthenticationRepository authenticationRepository;
+  final UserRepository userRepository;
   final MyUser user;
 
   void firstNameChange(String value) {
@@ -121,16 +122,24 @@ class EditUserInformationCubit extends Cubit<EditUserInformationState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
+      UpdatedUser updatedUser = UpdatedUser(
+          id: user.id,
+          address: state.address.value,
+          firstName: state.firstName.value,
+          lastName: state.lastName.value,
+          phoneNumber: state.phoneNumber.value,
+          age: state.age!,
+          postNumber: state.postNumber.value
+      );
+      await userRepository.editUser(updatedUser: updatedUser);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
-    } on SignUpWithEmailAndPasswordFailure catch (e) {
+    } catch (e) {
       emit(
         state.copyWith(
-          errorMessage: e.message,
+          errorMessage: "Failed to update information",
           status: FormzStatus.submissionFailure,
         ),
       );
-    } catch (_) {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
 }

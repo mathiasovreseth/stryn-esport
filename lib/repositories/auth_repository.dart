@@ -39,7 +39,8 @@ class AuthenticationRepository {
     });
   }
 
-  /// gets current user from firestore
+  /// gets current user from firestore,
+  /// TODO add this to a user repository instead maybe?
   Stream<MyUser> getUser(String uid) {
     return FirebaseFirestore.instance
         .collection('users')
@@ -47,6 +48,7 @@ class AuthenticationRepository {
         .snapshots()
         .map((event) => MyUser.fromQueryDocumentSnapshot(event));
   }
+
 
 
   Future<void> resetPasswordLink(String email) async {
