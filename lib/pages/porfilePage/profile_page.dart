@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
+import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
+import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
@@ -40,7 +42,9 @@ class _ProfilePageState extends State<ProfilePage> {
           elevation: 0,
           actions: [
             IconButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.of(context).push(SettingsPage.route())
+                },
                 icon: const Icon(
                   Icons.more_horiz,
                   color: Colors.black,
@@ -78,7 +82,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 );}
                 return _becomeMemberInfo();
               },
-            )
+            ),
+            ElevatedButton(onPressed: () =>{
+              Navigator.of(context).push(BookingPage.route())
+            }, child: const Text('Booking Page'),)
           ],
         ));
   }
