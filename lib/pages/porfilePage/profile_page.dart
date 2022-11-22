@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.of(context).push(SettingsPage.route())
                 },
                 icon: const Icon(
-                  Icons.more_horiz,
+                  Icons.settings,
                   color: Colors.black,
                 ))
           ],
