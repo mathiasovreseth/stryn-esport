@@ -21,4 +21,5 @@ class HomePage extends StatelessWidget {
     context.read<AppBloc>().add(LoadUserInfo());
     return ProfilePage();
   }
+  
 }

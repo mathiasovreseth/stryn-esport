@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
 
@@ -13,21 +16,19 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
+
   void _onItemTapped(int index) {
+    debugPrint("$index");
     //TODO if current index = index move to top else
     switch (index) {
       case 0:
-        Navigator.pushAndRemoveUntil<dynamic>(
-          context,
-          MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => ProfilePage(),
-          ),
-              (route) => false,//if you want to disable back feature set to false
-        );
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacement(CustomPageRoute(builder: (context) => const ProfilePage()));
+        });
         break;
       case 1:
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => BookingPage()));
+        Navigator.of(context).pushReplacement(CustomPageRoute(builder: (context) => BookingPage()));
         break;
 
       case 2: break;
@@ -62,4 +63,11 @@ class _BottomNavbarState extends State<BottomNavbar> {
     );
   }
 }
+class CustomPageRoute extends MaterialPageRoute {
+  CustomPageRoute({builder}) : super(builder: builder);
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 0);
+}
+
 

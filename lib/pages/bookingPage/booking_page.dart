@@ -8,6 +8,7 @@ import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import '../../services/database.dart';
 import '../../widgets/appBars/custom_app_bar.dart';
+import '../../widgets/bottom_navbar.dart';
 import '../../widgets/station_card.dart';
 
 class BookingPage extends StatelessWidget {
@@ -28,7 +29,8 @@ class BookingPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: _buildContents(context),
-        ), //_buildContents(context)
+        ),
+        bottomNavigationBar: const BottomNavbar(),//_buildContents(context)
       ),
     );
   }
