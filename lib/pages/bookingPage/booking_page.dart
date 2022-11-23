@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stryn_esport/models/station_model.dart';
-import 'package:provider/provider.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_cubit.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_state.dart';
-import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import '../../services/database.dart';
 import '../../widgets/appBars/custom_app_bar.dart';
 import '../../widgets/station_card.dart';
 
 class BookingPage extends StatelessWidget {
+  const BookingPage({super.key});
+
   static Route route() {
     return MaterialPageRoute<void>(
-      builder: (_) => BookingPage(),
+      builder: (_) => const BookingPage(),
     );
   }
 

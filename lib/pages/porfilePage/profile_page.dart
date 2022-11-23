@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
-import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
-import '../loginPage/bloc/login_cubit.dart';
-import '../loginPage/bloc/login_state.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -138,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(
               width: 5,
             ),
-            Text(string, style: TextStyle(color: Colors.black, fontSize: 16))
+            Text(string, style: const TextStyle(color: Colors.black, fontSize: 16))
           ],
         ));
   }

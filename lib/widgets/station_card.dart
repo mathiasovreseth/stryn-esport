@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:stryn_esport/models/station_model.dart';
 
 class StationCard extends StatelessWidget {

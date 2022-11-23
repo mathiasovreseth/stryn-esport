@@ -1,6 +1,3 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
@@ -12,11 +9,11 @@ class NavigationPage extends StatefulWidget {
   State<StatefulWidget> createState() => _NavigationPage();
 }
 
-class _NavigationPage extends State<NavigationPage>{
+class _NavigationPage extends State<NavigationPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const ProfilePage(),
-    BookingPage(),
+    const BookingPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -24,6 +21,7 @@ class _NavigationPage extends State<NavigationPage>{
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +42,11 @@ class _NavigationPage extends State<NavigationPage>{
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor:  const Color.fromRGBO(24, 144, 255, 1),
+        selectedItemColor: const Color.fromRGBO(24, 144, 255, 1),
         unselectedItemColor: Colors.black,
         backgroundColor: const Color(0xfff3f3f3),
         onTap: _onItemTapped,
       ),
     );
   }
-
 }
