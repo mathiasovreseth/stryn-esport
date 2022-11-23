@@ -6,6 +6,7 @@ import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
+import 'package:stryn_esport/widgets/bottom_navbar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
@@ -15,6 +16,12 @@ import '../loginPage/bloc/login_state.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  // static Route route() {
+  //   return MaterialPageRoute<void>(
+  //     builder: (_) => const ProfilePage(),
+  //   );
+  // }
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -23,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Booking> bookings = [];
   @override
   void initState() {
+    //TODO: set this to the bookings for the user
     for (int i = 0; i < 5; i++) {
       bookings.add(Booking(
           bookingId: "1",
@@ -56,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(color: Colors.black),
           )),
       body: _buildContent(),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 
