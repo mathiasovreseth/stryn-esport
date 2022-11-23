@@ -6,7 +6,6 @@ import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
-import 'package:stryn_esport/widgets/bottom_navbar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
@@ -64,7 +63,6 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(color: Colors.black),
           )),
       body: _buildContent(),
-      bottomNavigationBar: const BottomNavbar(),
     );
   }
 
@@ -92,9 +90,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 return _becomeMemberInfo();
               },
             ),
-            ElevatedButton(onPressed: () =>{
-              Navigator.of(context).push(BookingPage.route())
-            }, child: const Text('Booking Page'),)
           ],
         ));
   }

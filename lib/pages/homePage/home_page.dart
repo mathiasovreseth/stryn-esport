@@ -9,6 +9,7 @@ import 'package:stryn_esport/pages/app/bloc/app_event.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
 
 import '../app/bloc/app_bloc.dart';
+import '../navigationPage/navigation_page.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -18,8 +19,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AppBloc>().add(LoadUserInfo());
-    return ProfilePage();
+    context.read<AppBloc>().add(const LoadUserInfo());
+    return const NavigationPage();
   }
   
 }
