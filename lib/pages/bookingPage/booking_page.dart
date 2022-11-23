@@ -28,7 +28,7 @@ class BookingPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: _buildContents(context),
-        ), //_buildContents(context)
+        ),
       ),
     );
   }

@@ -15,6 +15,12 @@ import '../loginPage/bloc/login_state.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  // static Route route() {
+  //   return MaterialPageRoute<void>(
+  //     builder: (_) => const ProfilePage(),
+  //   );
+  // }
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -23,6 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Booking> bookings = [];
   @override
   void initState() {
+    //TODO: set this to the bookings for the user
     for (int i = 0; i < 5; i++) {
       bookings.add(Booking(
           bookingId: "1",
@@ -83,9 +90,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 return _becomeMemberInfo();
               },
             ),
-            ElevatedButton(onPressed: () =>{
-              Navigator.of(context).push(BookingPage.route())
-            }, child: const Text('Booking Page'),)
           ],
         ));
   }
