@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
 
+import '../store/store_page.dart';
+
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
 
@@ -14,6 +16,7 @@ class _NavigationPage extends State<NavigationPage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const ProfilePage(),
     const BookingPage(),
+    const StorePage(),
   ];
 
   void _onItemTapped(int index) {

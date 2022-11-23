@@ -10,9 +10,8 @@ class StationCubit extends Cubit<StationsState> {
   final FirestoreDatabase _database;
 
   void getStations() {
-    print("jadda");
     _database.stationsStream().listen((event) {
-      print(event);
+      // print(event);
       emit(state.copyWith(
         stations: event,
         status: Status.success,
