@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
-  const CustomAppBar(
-      {required this.headerText, Key? key})
-      : super(key: key);
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+  const CustomAppBar({required this.headerText, Key? key}) : super(key: key);
   final String headerText;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -14,9 +13,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
       title: Text(
         headerText,
         style: TextStyle(
-            color: Colors.black.withOpacity(0.85),
-            fontSize: 18,
-            fontWeight: FontWeight.w600),
+          color: Colors.black.withOpacity(0.85),
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 1,
+        ),
       ),
     );
   }
