@@ -20,7 +20,7 @@ class BulletList extends StatelessWidget {
                 '\u2022',
                 style: TextStyle(
                   fontSize: 16,
-                  height: 1.55,
+                  height: 2,
                   color: Colors.black,
                 ),
               ),
@@ -32,10 +32,12 @@ class BulletList extends StatelessWidget {
                   str,
                   textAlign: TextAlign.left,
                   softWrap: true,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.black.withOpacity(0.6),
-                    height: 1.55,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    letterSpacing: 1,
+                    height: 2,
                   ),
                 ),
               ),
