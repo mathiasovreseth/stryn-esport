@@ -62,12 +62,23 @@ class BecomeMemberPage extends StatelessWidget {
               ),
               const BulletList(
                 strings: [
-                  "Test1",
-                  "Test2",
-                  "Test3",
-                  "Test4",
+                  "Årskontigent: 995.-",
+                  "6 måneder: 595.-",
+                  "3 måneder: 295.-",
+                  "1 måned: 159.-",
                 ],
-              )
+              ),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "Vi har desverre ingen betalingsløsninger i appen, "
+                  "så vennligst kontakt xxx angående nytt medlemskap",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
