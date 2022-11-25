@@ -62,8 +62,8 @@ class BecomeMainMemberWidget extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                "Vi har desverre ingen betalingsløsninger i appen, "
-                    "så vennligst kontakt xxx angående nytt medlemskap",
+                "Vi har desverre ingen betalingsløsninger i appen"
+                    ". Vennligst kontakt xxx angående nytt medlemskap",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
