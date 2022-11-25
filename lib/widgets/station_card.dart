@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:stryn_esport/models/station_model.dart';
 
 class StationCard extends StatelessWidget {
@@ -10,6 +9,7 @@ class StationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 10,
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
@@ -20,13 +20,25 @@ class StationCard extends StatelessWidget {
         onTap: () {
           debugPrint("test");
         },
-        child: ColorFiltered(
-          colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.35), BlendMode.darken),
-          child: Image.network(
-            station.image,
-            fit: BoxFit.fill,
-          ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.35), BlendMode.darken),
+              child: Image.network(
+                station.image,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Text(
+              station.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+          ],
         ),
       ),
     );

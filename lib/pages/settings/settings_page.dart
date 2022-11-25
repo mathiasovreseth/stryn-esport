@@ -1,13 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stryn_esport/pages/settings/change_password.dart/change_password.dart';
-import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_cubit.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/edit_user_information.dart';
 import 'package:stryn_esport/pages/settings/privacy_policy.dart';
 import 'package:stryn_esport/pages/settings/terms_of_service.dart';
-
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/buttons/my_text_button.dart';
 import 'package:stryn_esport/widgets/spacer.dart';

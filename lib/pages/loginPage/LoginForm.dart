@@ -24,7 +24,8 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (BuildContext context) => LoginCubit(AuthenticationRepository()),
+        create: (BuildContext context) =>
+            LoginCubit(AuthenticationRepository()),
         child: Form(
             key: _formKey,
             child: BlocListener<LoginCubit, LoginState>(
@@ -58,7 +59,7 @@ class LoginPage extends StatelessWidget {
                           _EmailInput(),
                           const VerticalSpacer(),
                           _PasswordInput(),
-                          // add forgot password her
+                          // TODO: add forgot password her
                           const VerticalSpacer(),
                           Row(
                             children: [

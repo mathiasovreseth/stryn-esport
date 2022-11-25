@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 /// Vertical spacing, defaults to 12
