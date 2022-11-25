@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
+import 'package:stryn_esport/widgets/persistent_tab.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -11,21 +12,41 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPage extends State<NavigationPage> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
-    const ProfilePage(),
-    const BookingPage(),
-  ];
+  late PageController _pageController;
+  late List<Widget> _pages;
 
   void _onItemTapped(int index) {
+    _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     setState(() {
       _selectedIndex = index;
     });
   }
 
   @override
+  void initState() {
+    _pageController = PageController();
+    _pages =  [
+      PersistantTab(
+        child: ProfilePage(
+          key: const PageStorageKey('profilePage'),
+        ),
+      ),
+      const PersistantTab(
+        child: BookingPage(key: PageStorageKey('BookingPage')),
+      ),
+
+    ];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: _pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

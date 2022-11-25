@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/models/booking_models.dart';
@@ -16,11 +18,12 @@ class CalendarCubit extends Cubit<CalendarState> {
   final CalendarRepository _calendarRepository;
   final MyUser _user;
   final String stationId;
+  late StreamSubscription _eventsStreamController;
 
 
   /// Fetch all events for a station's calendar
   void getEvents(String stationId) {
-    _calendarRepository.getEvents(stationId).listen((event) {
+    _eventsStreamController = _calendarRepository.getEvents(stationId).listen((event) {
       emit(state.copyWith(
         events: event,
         status: CalendarStatus.success,
@@ -58,5 +61,9 @@ class CalendarCubit extends Cubit<CalendarState> {
     }
   }
 
-
+  @override
+  Future<void> close() {
+    _eventsStreamController.cancel();
+    return super.close();
+  }
 }

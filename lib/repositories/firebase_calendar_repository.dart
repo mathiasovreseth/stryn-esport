@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stryn_esport/models/booking_models.dart';
 import 'package:stryn_esport/models/station_model.dart';
 
@@ -16,6 +17,7 @@ class FirebaseCalendarRepository extends CalendarRepository {
       "userId": userId,
       "stationId": station.id,
       "stationName": station.name,
+      "stationImage": station.image,
       "from": from,
       "to": to,
       "subject": subject
@@ -23,7 +25,9 @@ class FirebaseCalendarRepository extends CalendarRepository {
 
     CollectionReference userRef = FirebaseFirestore.instance.collection('users').doc(userId).collection('events');
     await userRef.doc(docRef.id).set({
-      "eventId": docRef.id
+      "eventRef": FirebaseFirestore.instance.doc('computerStations/${station.id}/events/${docRef.id}'),
+      "to": to,
+      "from": from,
     });
   }
   // min date for events to be fetched
@@ -38,7 +42,7 @@ class FirebaseCalendarRepository extends CalendarRepository {
     return FirebaseFirestore.instance.collection('computerStations')
         .doc(stationId)
         .collection('events')
-        .where('to', isGreaterThan: Timestamp.fromDate(getDateMorningToday()))
+        .where('from', isGreaterThan: Timestamp.fromDate(getDateMorningToday()))
         .snapshots()
         .map((event) {
       return event.docs.map((e)  {
@@ -50,17 +54,25 @@ class FirebaseCalendarRepository extends CalendarRepository {
 
   @override
   Stream<List<Booking>> getMyEvents(String userId)  {
-    return FirebaseFirestore.instance.collection('events')
-        .where('userId', isEqualTo: userId)
-        .where('to', isGreaterThan: Timestamp.now())
+    return FirebaseFirestore.instance.collection('users')
+        .doc(userId)
+        .collection('events')
+        .where('from', isGreaterThan: Timestamp.fromDate(getDateMorningToday()))
+        .orderBy('from', descending: false)
         .snapshots()
-        .map((event) {
-      return event.docs.map((e)  {
-        return Booking.fromQueryDocumentSnapshot(e);
-      }).toList();
-    });
+        .asyncMap((event) => _getEventsFromSnapshot(event));
 
   }
+
+  Future<List<Booking>> _getEventsFromSnapshot(QuerySnapshot snapshot) async {
+    final futures = snapshot.docs.map((doc) async {
+      DocumentReference ref = doc.get('eventRef');
+      DocumentSnapshot snapshot = await ref.get();
+      return Booking.fromQueryDocumentSnapshot(snapshot);
+    });
+    return Future.wait(futures);
+  }
+
 
   @override
   Future<void> removeEvent(Station station, Booking booking, String userId) async {
