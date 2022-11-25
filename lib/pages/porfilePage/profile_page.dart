@@ -95,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final List<String> bulletListAdvantages = [
     "Tilgang til aktiviteter i alle våre klubber",
     "Spille på våre maskinparker",
-    "Medlemsrabatt på klubbstore (Kommer snart)",
+    "Medlemsrabatt på klubbstore",
     "Medlemsrabatt på arrangementer",
     "Medlemsrabatt på utstyr og tilbehør",
     "Tilgang til Stryn e-sport sin Discord"
