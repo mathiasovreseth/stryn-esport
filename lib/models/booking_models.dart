@@ -4,6 +4,8 @@ class Booking {
   const Booking({
     required this.bookingId,
     required this.stationId,
+    required this.stationName,
+    required this.stationImage,
     required this.from,
     required this.to,
     required this.userId,
@@ -11,6 +13,8 @@ class Booking {
   });
 
   final String stationId;
+  final String stationName;
+  final String stationImage;
 
   final String subject;
 
@@ -25,6 +29,8 @@ class Booking {
   Booking copyWith({
     required String bookingId,
     required String stationId,
+    required String stationName,
+    required String stationImage,
     required DateTime from,
     required DateTime to,
     required String userId,
@@ -34,6 +40,8 @@ class Booking {
     return Booking(
       bookingId: bookingId,
       stationId: stationId,
+      stationImage: stationImage,
+      stationName: stationName,
       from: from,
       to: to,
       userId: userId,
@@ -44,6 +52,8 @@ class Booking {
   Booking.fromQueryDocumentSnapshot(DocumentSnapshot snapshot)
       : bookingId = snapshot.id,
         stationId = snapshot.get('stationId'),
+        stationName = snapshot.get('stationName'),
+        stationImage = snapshot.get('stationImage'),
         from = DateTime.fromMillisecondsSinceEpoch(
             (snapshot.get('from') as Timestamp).millisecondsSinceEpoch),
         to = DateTime.fromMillisecondsSinceEpoch(

@@ -4,41 +4,19 @@ import 'package:intl/intl.dart';
 import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
+import 'package:stryn_esport/pages/porfilePage/bloc/profile_cubit.dart';
+import 'package:stryn_esport/pages/porfilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
+import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
+import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
 
-  // static Route route() {
-  //   return MaterialPageRoute<void>(
-  //     builder: (_) => const ProfilePage(),
-  //   );
-  // }
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  List<Booking> bookings = [];
-  @override
-  void initState() {
-    //TODO: set this to the bookings for the user
-    for (int i = 0; i < 5; i++) {
-      bookings.add(Booking(
-          bookingId: "1",
-          stationId: "12",
-          from: DateTime.now(),
-          to: DateTime.now().add(const Duration(days: 5)),
-          userId: "2",
-          subject: ''
-      ));
-    }
-    super.initState();
-  }
+class ProfilePage extends StatelessWidget {
+   ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +39,19 @@ class _ProfilePageState extends State<ProfilePage> {
             "Min Profil",
             style: TextStyle(color: Colors.black),
           )),
-      body: _buildContent(),
+      body: BlocProvider(
+        create: (BuildContext context) => ProfileCubit(
+            FirebaseCalendarRepository(),
+            context.read<AppBloc>().state.user,
+            ),
+        child: _buildContent(),
+      ),
     );
   }
 
   Widget _buildContent() {
     return Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 12),
         child: ListView(
           children: [
             _UserTitleImage(),
@@ -77,15 +61,15 @@ class _ProfilePageState extends State<ProfilePage> {
             BlocBuilder<AppBloc, AppState>(
               buildWhen: (previous, current) => previous.user != current.user,
               builder: (context, state){
-                if(state.user.hasMembership != null){
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    state.user.hasMembership!
-                        ? _bookings()
-                        : _becomeMemberInfo()
-                  ],
-                );}
+                if(state.user.hasMembership != null) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      state.user.hasMembership!
+                          ? _bookings()
+                          : _becomeMemberInfo()
+                    ],
+                  );}
                 return _becomeMemberInfo();
               },
             ),
@@ -143,20 +127,58 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _bookings() {
-    return Column(children: [
-      const Text(
-        "Mine bookings",
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
-      const VerticalSpacer(
-        height: 20,
-      ),
-      for (Booking booking in bookings) _bookedItem(booking)
-    ]);
-  }
+    return BlocBuilder<ProfileCubit, ProfileState>(
+      buildWhen: (prev, next) => prev.myEvents.length != next.myEvents.length,
+      builder: (context, state) {
+        if(state.status == ProfileStatus.success) {
+          if(state.myEvents.isEmpty) {
+            return _emptyBookings();
+          } else {
+            return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    "Mine bookings",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  const VerticalSpacer(
+                    height: 20,
+                  ),
+                  for (Booking booking in state.myEvents) _bookedItem(booking)
+                ]);
 
-  Widget _bookedItem(Booking booking) {
+          }
+        }
+        if(state.status == ProfileStatus.loading) {
+          return const LoadingIndicator();
+        }
+        return Container();
+      },
+
+    );
+  }
+   Widget _emptyBookings() {
+     return Container(
+       height: 100,
+       padding: const EdgeInsets.only(top: 16),
+       width: double.infinity,
+       decoration: const BoxDecoration(
+           color: Colors.white,
+           borderRadius: BorderRadius.all(Radius.circular(10))),
+       margin: const EdgeInsets.only(top: 16),
+       alignment: Alignment.center,
+       child: Column(
+         children: [
+           Text("Mine bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 16, fontWeight: FontWeight.bold),),
+           const VerticalSpacer(height: 16,),
+           Text("Du har ingen reservasjoner for øyeblikket", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),)
+         ],
+       ),
+     );
+   }
+
+   Widget _bookedItem(Booking booking) {
     return Container(
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -164,6 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
               topLeft: Radius.circular(10), bottomLeft: Radius.circular(10))),
       margin: const EdgeInsets.only(top: 16),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
@@ -171,17 +194,21 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               //left section
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Stasjon  ${booking.stationId}",
+                  "Stasjon:  ${booking.stationName}",
+                  style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  "Dato:    ${DateFormat.yMMMd().format(booking.from)}",
+                  "Dato:  ${DateFormat.yMMMd().format(booking.from)}",
+                  style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
                 Text(
                   "Tid:     ${booking.from.hour} - ${booking.to.hour}",
+                  style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -189,13 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           ClipPath(
             clipper: _ImagePath(),
-            child: Container(
-              //Image
-              height: 60,
-              width: 169,
-              color: Colors.brown,
-              //TODO: insert image of station
-            ),
+            child: Image.network(booking.stationImage),
           ),
         ],
       ),
@@ -284,6 +305,6 @@ class _ImagePath extends CustomClipper<Path> {
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     // TODO: implement shouldReclip
-    throw UnimplementedError();
+    return false;
   }
 }
