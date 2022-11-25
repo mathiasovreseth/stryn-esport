@@ -32,6 +32,7 @@ class FirebaseCalendarRepository extends CalendarRepository {
     return DateTime(dateNow.year, dateNow.month, dateNow.day, 8, 0);
   }
 
+
   @override
   Stream<List<Booking>> getEvents(String stationId) {
     return FirebaseFirestore.instance.collection('computerStations')
@@ -74,6 +75,28 @@ class FirebaseCalendarRepository extends CalendarRepository {
         .collection('events')
         .doc(booking.bookingId)
         .delete();
+  }
+
+  DateTime getMorningOfDay(DateTime date) {
+    return DateTime(date.year, date.month, date.day, 8, 0);
+  }
+  DateTime getEndOfDay(DateTime date) {
+    return DateTime(date.year, date.month, date.day, 24, 0);
+  }
+
+  /// fetch bookings for a day
+  @override
+  Future<List<Booking>> getMyEventsByDay(String userId, String stationId, DateTime dayToCheck) async {
+    QuerySnapshot bookings = await FirebaseFirestore.instance.collection('computerStations')
+        .doc(stationId)
+        .collection('events')
+        .where('userId', isEqualTo: userId)
+        .where('to', isGreaterThanOrEqualTo: Timestamp.fromDate(getMorningOfDay(dayToCheck)), isLessThanOrEqualTo: Timestamp.fromDate(getEndOfDay(dayToCheck)))
+        .get();
+    return bookings.docs.map((e)  {
+        return Booking.fromQueryDocumentSnapshot(e);
+      }).toList();
+
   }
 
 }

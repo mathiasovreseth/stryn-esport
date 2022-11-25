@@ -47,6 +47,16 @@ class CalendarCubit extends Cubit<CalendarState> {
       return false;
     }
   }
+  /// Used to check the number of bookings the user has in a particular day
+  /// We allow 2 bookings per day
+  Future<bool> checkNrOfEventsInADay(Station station, DateTime date) async {
+    List<Booking> bookings = await _calendarRepository.getMyEventsByDay(_user.id, stationId, date);
+    if(bookings.length >= 2) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 
 }

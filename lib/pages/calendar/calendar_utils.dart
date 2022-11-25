@@ -27,6 +27,18 @@ void showNotOwnerSnackBar(BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+void showToManyBookingsSnackBar(BuildContext context) {
+  final SnackBar snackBar = SnackBar(
+    duration: const Duration(seconds: 3),
+    backgroundColor: Colors.red.shade900,
+    content: const Text(
+      'Du har for mange bookings, max 2 per dag!',
+      style: TextStyle(fontSize: 16, color: Colors.white),
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
 
 void showBookingRemovedSnackBar(BuildContext context) {
   final SnackBar snackBar = SnackBar(

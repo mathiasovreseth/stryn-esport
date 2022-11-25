@@ -114,19 +114,23 @@ SfCalendar _getCalendar([
           return showDialog<void>(
             context: cubitContext,
             barrierDismissible: false, // user must tap button!
-            builder: (context) =>
-                _addRemoveEventDialogContent(cubitContext, context, details, station!),
+            builder: (context) => _addRemoveEventDialogContent(cubitContext, context, details, station!),
           );
         } else {
           showNotOwnerSnackBar(cubitContext);
         }
     } else {
-      return showDialog<void>(
-        context: cubitContext,
-        barrierDismissible: false, // user must tap button!
-        builder: (context) =>
-            _addNewEventDialogContent(cubitContext, context, details, station!),
-      );
+      bool canAddMoreBookings = await cubitContext.read<CalendarCubit>().checkNrOfEventsInADay(station!, details.date!);
+      if(canAddMoreBookings) {
+        return showDialog<void>(
+          context: cubitContext,
+          barrierDismissible: false, // user must tap button!
+          builder: (context) =>
+              _addNewEventDialogContent(cubitContext, context, details, station),
+        );
+      } else {
+        showToManyBookingsSnackBar(cubitContext);
+      }
 
     }
   }
