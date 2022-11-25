@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
@@ -218,7 +219,8 @@ class _UserTitleImage extends StatelessWidget {
           child: BlocBuilder<AppBloc, AppState>(
             buildWhen: (previous, current) => previous.user != current.user,
             builder: (context, state) {
-              if(state.user.firstName != null){
+              MyUser user = state.user;
+              if(user.firstName != null && user.lastName != null && user.hasMembership != null) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

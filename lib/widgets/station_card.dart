@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/models/station_model.dart';
+import 'package:stryn_esport/pages/calendar/calendar_page.dart';
 
 class StationCard extends StatelessWidget {
   const StationCard({Key? key, required this.station}) : super(key: key);
@@ -17,9 +18,7 @@ class StationCard extends StatelessWidget {
       ),
       child: InkWell(
         splashColor: Colors.black.withAlpha(80),
-        onTap: () {
-          debugPrint("test");
-        },
+        onTap: () => Navigator.of(context).push(CalendarPage.route(station: station)),
         child: Stack(
           fit: StackFit.expand,
           children: [
