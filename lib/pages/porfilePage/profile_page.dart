@@ -29,7 +29,9 @@ class _ProfilePageState extends State<ProfilePage> {
           stationId: "12",
           from: DateTime.now(),
           to: DateTime.now().add(const Duration(days: 5)),
-          userId: "2"));
+          userId: "2",
+          subject: ''
+      ));
     }
     super.initState();
   }
