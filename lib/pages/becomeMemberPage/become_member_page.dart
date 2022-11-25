@@ -20,9 +20,8 @@ class BecomeMemberPage extends StatelessWidget {
       ),
       body: Column(
         children: const [
-          BecomeSupportMemberWidget(),
           BecomeMainMemberWidget(),
-          SizedBox(height: 8.0),
+          BecomeSupportMemberWidget(),
         ],
       ),
     );

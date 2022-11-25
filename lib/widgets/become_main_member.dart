@@ -9,7 +9,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
       child: Card(
         color: Colors.white,
         shape: RoundedRectangleBorder(
@@ -19,7 +19,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 50,
+              height: 30,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -44,7 +44,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
               child: Text(
                 "Priser",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
@@ -66,7 +66,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
                     "så vennligst kontakt xxx angående nytt medlemskap",
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 15,
                 ),
               ),
             ),

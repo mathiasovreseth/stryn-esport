@@ -9,7 +9,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
       child: Card(
         color: Colors.white,
         shape: RoundedRectangleBorder(
@@ -19,7 +19,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 50,
+              height: 30,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -29,7 +29,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: const Text(
-                "Hovedmedlem",
+                "Støttemedlem",
                 style: TextStyle(
                   fontSize: 20.0,
                   letterSpacing: 1,
@@ -42,9 +42,9 @@ class BecomeSupportMemberWidget extends StatelessWidget {
                 top: 10,
               ),
               child: Text(
-                "Priser",
+                "Fordeler",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
@@ -53,20 +53,29 @@ class BecomeSupportMemberWidget extends StatelessWidget {
             ),
             const BulletList(
               strings: [
-                "",
+                "Medlemsrabatt på klubbstore",
+                "Medlemsrabatt på arrangement",
               ],
             ),
             const Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.only(
+                left: 15,
+                top: 10,
+              ),
               child: Text(
                 "Priser",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
                 ),
               ),
+            ),
+            const BulletList(
+              strings: [
+                "Valgfritt beløp over kr 199.-",
+              ],
             ),
           ],
         ),
