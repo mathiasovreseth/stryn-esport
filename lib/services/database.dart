@@ -12,6 +12,7 @@ class FirestoreDatabase implements Database {
   final _service = FirestoreService.instance;
 
 
+  @override
   Stream<List<Station>> stationsStream() => _service.collectionStream(
     path: APIPath.stations(),
     builder: (data) => Station.fromQueryDocumentSnapshot(data),

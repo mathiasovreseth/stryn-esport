@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
@@ -32,7 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
           stationId: "12",
           from: DateTime.now(),
           to: DateTime.now().add(const Duration(days: 5)),
-          userId: "2"));
+          userId: "2",
+          subject: ''
+      ));
     }
     super.initState();
   }
@@ -93,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final List<String> bulletListAdvantages = [
     "Tilgang til aktiviteter i alle våre klubber",
     "Spille på våre maskinparker",
-    "Medlemsrabatt på klubbstore (Kommer snart)",
+    "Medlemsrabatt på klubbstore",
     "Medlemsrabatt på arrangementer",
     "Medlemsrabatt på utstyr og tilbehør",
     "Tilgang til Stryn e-sport sin Discord"
@@ -216,7 +219,8 @@ class _UserTitleImage extends StatelessWidget {
           child: BlocBuilder<AppBloc, AppState>(
             buildWhen: (previous, current) => previous.user != current.user,
             builder: (context, state) {
-              if(state.user.firstName != null){
+              MyUser user = state.user;
+              if(user.firstName != null && user.lastName != null && user.hasMembership != null) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
