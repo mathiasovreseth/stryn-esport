@@ -11,7 +11,6 @@ class StationCubit extends Cubit<StationsState> {
 
   void getStations() {
     _database.stationsStream().listen((event) {
-      // print(event);
       emit(state.copyWith(
         stations: event,
         status: Status.success,
