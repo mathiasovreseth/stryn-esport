@@ -8,6 +8,7 @@ import 'package:stryn_esport/pages/porfilePage/bloc/profile_cubit.dart';
 import 'package:stryn_esport/pages/porfilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
+import 'package:stryn_esport/widgets/images/cache_image_container.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
@@ -180,6 +181,7 @@ class ProfilePage extends StatelessWidget {
 
    Widget _bookedItem(Booking booking) {
     return Container(
+      width: double.infinity,
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -216,7 +218,9 @@ class ProfilePage extends StatelessWidget {
           ),
           ClipPath(
             clipper: _ImagePath(),
-            child: Image.network(booking.stationImage),
+            child: CachedNetworkImageContainer(
+              imageUrl: booking.stationImage,
+            ),
           ),
         ],
       ),
