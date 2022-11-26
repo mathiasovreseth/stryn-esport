@@ -42,7 +42,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
                 top: 10,
               ),
               child: Text(
-                "Become member to rent stations",
+                "Become a member to rent stations",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,

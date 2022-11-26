@@ -30,7 +30,7 @@ class BookingPage extends StatelessWidget {
       create: (BuildContext context) => StationCubit(FirestoreDatabase()),
       child: Scaffold(
         appBar: const CustomAppBar(
-          headerText: 'Book stasjoner',
+          headerText: 'Book Stations',
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
