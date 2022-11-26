@@ -50,6 +50,7 @@ dependencies:
   calendar_view: ^1.0.0
   syncfusion_flutter_calendar: ^20.3.47
   flutter_native_splash: ^2.2.15
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
