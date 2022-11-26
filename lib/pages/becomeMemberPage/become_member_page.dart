@@ -16,7 +16,7 @@ class BecomeMemberPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        headerText: "Bli medlem",
+        headerText: "Become Member",
       ),
       body: Column(
         children: const [

@@ -29,7 +29,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: const Text(
-                "Støttemedlem",
+                "Support Member",
                 style: TextStyle(
                   fontSize: 20.0,
                   letterSpacing: 1,
@@ -42,7 +42,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
                 top: 10,
               ),
               child: Text(
-                "Fordeler",
+                "Advantages",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,
@@ -53,8 +53,8 @@ class BecomeSupportMemberWidget extends StatelessWidget {
             ),
             const BulletList(
               strings: [
-                "Medlemsrabatt på klubbstore",
-                "Medlemsrabatt på arrangement",
+                "Member discount on the club store",
+                "Member discount on various events",
               ],
             ),
             const Padding(
@@ -63,7 +63,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
                 top: 10,
               ),
               child: Text(
-                "Priser",
+                "Pricing",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,
@@ -74,7 +74,7 @@ class BecomeSupportMemberWidget extends StatelessWidget {
             ),
             const BulletList(
               strings: [
-                "Valgfritt beløp over kr 199.-",
+                "Any sum above NOK 199.-",
               ],
             ),
           ],

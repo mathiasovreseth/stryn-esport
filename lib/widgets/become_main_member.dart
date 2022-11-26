@@ -29,7 +29,7 @@ class BecomeMainMemberWidget extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: const Text(
-                "Hovedmedlem",
+                "Main Member",
                 style: TextStyle(
                   fontSize: 20.0,
                   letterSpacing: 1,
@@ -42,7 +42,22 @@ class BecomeMainMemberWidget extends StatelessWidget {
                 top: 10,
               ),
               child: Text(
-                "Priser",
+                "Become member to rent stations",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 15,
+                top: 10,
+              ),
+              child: Text(
+                "Pricing",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,
@@ -53,17 +68,17 @@ class BecomeMainMemberWidget extends StatelessWidget {
             ),
             const BulletList(
               strings: [
-                "Årskontigent: 995.-",
-                "6 måneder: 595.-",
-                "3 måneder: 295.-",
-                "1 måned: 159.-",
+                "Annual membership: NOK 995.-",
+                "6 months membership: NOK 595.-",
+                "3 months membership: NOK 295.-",
+                "1 month membership: NOK 159.-",
               ],
             ),
             const Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                "Vi har desverre ingen betalingsløsninger i appen"
-                    ". Vennligst kontakt xxx angående nytt medlemskap",
+                "Unfortunately, we don't have any payment options in the app. "
+                "Please contact xxx to purchase or renew your membership",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
@@ -76,4 +91,3 @@ class BecomeMainMemberWidget extends StatelessWidget {
     );
   }
 }
-
