@@ -59,7 +59,6 @@ class LoginPage extends StatelessWidget {
                           _EmailInput(),
                           const VerticalSpacer(),
                           _PasswordInput(),
-                          // TODO: add forgot password her
                           const VerticalSpacer(),
                           Row(
                             children: [

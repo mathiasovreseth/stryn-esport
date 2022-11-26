@@ -36,6 +36,9 @@ class _NavigationPage extends State<NavigationPage> {
       const PersistantTab(
         child: BookingPage(key: PageStorageKey('BookingPage')),
       ),
+      const PersistantTab(
+        child: StorePage(key: PageStorageKey('StorePage')),
+      ),
 
     ];
     super.initState();

@@ -40,7 +40,6 @@ class AuthenticationRepository {
   }
 
   /// gets current user from firestore,
-  /// TODO add this to a user repository instead maybe?
   Stream<MyUser> getUser(String uid) {
     return FirebaseFirestore.instance
         .collection('users')
@@ -198,7 +197,6 @@ class EmailFailure implements Exception {
   final String message;
 }
 
-// TODO add photo to user and username maybe
 extension on firebase_auth.User {
   MyUser get toUser {
     return MyUser(id: uid, email: email, firstName: displayName);
