@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
           ],
           centerTitle: true,
           title: const Text(
-            "Min Profil",
+            "My Profile",
             style: TextStyle(color: Colors.black),
           )),
       body: BlocProvider(
@@ -80,6 +80,7 @@ class ProfilePage extends StatelessWidget {
         ));
   }
 
+  //TODO: get this from database
   final List<String> bulletListAdvantages = [
     "Tilgang til aktiviteter i alle våre klubber",
     "Spille på våre maskinparker",
@@ -91,7 +92,7 @@ class ProfilePage extends StatelessWidget {
   Widget _becomeMemberInfo() {
     return Column(children: [
       const Text(
-        "Bli medlem",
+        "Become member",
         style: TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
       ),
@@ -102,7 +103,7 @@ class ProfilePage extends StatelessWidget {
                 topLeft: Radius.circular(10), bottomLeft: Radius.circular(10))),
         margin: const EdgeInsets.only(top: 16),
         child: Column(children: <Widget>[
-          const Text("Fordeler", style: TextStyle(color: Colors.black, fontSize: 20)),
+          const Text("Advantages", style: TextStyle(color: Colors.black, fontSize: 20)),
           for (String string in bulletListAdvantages)
             _createBulletListItem(string)
         ]),
@@ -141,7 +142,7 @@ class ProfilePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    "Mine bookings",
+                    "My bookings",
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
                   ),
@@ -173,9 +174,9 @@ class ProfilePage extends StatelessWidget {
        alignment: Alignment.center,
        child: Column(
          children: [
-           Text("Mine bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 16, fontWeight: FontWeight.bold),),
+           Text("My bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 16, fontWeight: FontWeight.bold),),
            const VerticalSpacer(height: 16,),
-           Text("Du har ingen reservasjoner for øyeblikket", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),)
+           Text("You have none active bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),)
          ],
        ),
      );
@@ -269,7 +270,7 @@ class _UserTitleImage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    state.user.hasMembership! ? "Er medlem" : "Er ikke medlem",
+                    state.user.hasMembership! ? "Is a member" : "Not a member",
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
@@ -326,7 +327,6 @@ class BoxShadowPainter extends CustomPainter {
     path.lineTo(-5, h); //pint 2
     path.lineTo(w, h); //point 3
     path.lineTo(w, 0);
-
 
     canvas.drawShadow(path, Colors.black,3 , false);
   }
