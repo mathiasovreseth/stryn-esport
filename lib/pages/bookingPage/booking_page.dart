@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
+import 'package:stryn_esport/pages/becomeMemberPage/become_member_page.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_cubit.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_state.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
@@ -18,6 +20,12 @@ class BookingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool? isMember = context.read<AppBloc>().state.user.hasMembership;
+
+    return isMember! ? _bookingPage(context) : const BecomeMemberPage();
+  }
+
+  Widget _bookingPage(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => StationCubit(FirestoreDatabase()),
       child: Scaffold(

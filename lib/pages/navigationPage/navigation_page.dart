@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stryn_esport/pages/becomeMemberPage/become_member_page.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
 
@@ -14,7 +13,7 @@ class _NavigationPage extends State<NavigationPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const ProfilePage(),
-    const BecomeMemberPage(),
+    const BookingPage(),
   ];
 
   void _onItemTapped(int index) {
