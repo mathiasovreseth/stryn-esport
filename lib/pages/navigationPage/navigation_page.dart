@@ -3,6 +3,8 @@ import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
 import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
 import 'package:stryn_esport/widgets/persistent_tab.dart';
 
+import '../store/store_page.dart';
+
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
 
