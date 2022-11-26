@@ -10,16 +10,15 @@ import 'package:stryn_esport/pages/porfilePage/bloc/profile_cubit.dart';
 import 'package:stryn_esport/pages/porfilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
+import 'package:stryn_esport/widgets/custom_bullet_list.dart';
 import 'package:stryn_esport/widgets/images/cache_image_container.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
 
-
-
 class ProfilePage extends StatelessWidget {
-   ProfilePage({Key? key}) : super(key: key);
+  ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,8 @@ class ProfilePage extends StatelessWidget {
           elevation: 0,
           actions: [
             IconButton(
-                onPressed: () => {
-                  Navigator.of(context).push(SettingsPage.route())
-                },
+                onPressed: () =>
+                    {Navigator.of(context).push(SettingsPage.route())},
                 icon: const Icon(
                   Icons.settings,
                   color: Colors.black,
@@ -44,9 +42,9 @@ class ProfilePage extends StatelessWidget {
           )),
       body: BlocProvider(
         create: (BuildContext context) => ProfileCubit(
-            FirebaseCalendarRepository(),
-            context.read<AppBloc>().state.user,
-            ),
+          FirebaseCalendarRepository(),
+          context.read<AppBloc>().state.user,
+        ),
         child: _buildContent(),
       ),
     );
@@ -54,7 +52,8 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildContent() {
     return Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 12),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 12),
         child: ListView(
           children: [
             _UserTitleImage(),
@@ -63,8 +62,8 @@ class ProfilePage extends StatelessWidget {
             ),
             BlocBuilder<AppBloc, AppState>(
               buildWhen: (previous, current) => previous.user != current.user,
-              builder: (context, state){
-                if(state.user.hasMembership != null) {
+              builder: (context, state) {
+                if (state.user.hasMembership != null) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -72,7 +71,8 @@ class ProfilePage extends StatelessWidget {
                           ? _bookings()
                           : _becomeMemberInfo()
                     ],
-                  );}
+                  );
+                }
                 return _becomeMemberInfo();
               },
             ),
@@ -89,6 +89,7 @@ class ProfilePage extends StatelessWidget {
     "Medlemsrabatt på utstyr og tilbehør",
     "Tilgang til Stryn e-sport sin Discord"
   ];
+
   Widget _becomeMemberInfo() {
     return Column(children: [
       const Text(
@@ -103,86 +104,78 @@ class ProfilePage extends StatelessWidget {
                 topLeft: Radius.circular(10), bottomLeft: Radius.circular(10))),
         margin: const EdgeInsets.only(top: 16),
         child: Column(children: <Widget>[
-          const Text("Advantages", style: TextStyle(color: Colors.black, fontSize: 20)),
-          for (String string in bulletListAdvantages)
-            _createBulletListItem(string)
+          const Text("Advantages",
+              style: TextStyle(color: Colors.black, fontSize: 20)),
+          BulletList(strings: bulletListAdvantages),
         ]),
       )
     ]);
-  }
-
-  Widget _createBulletListItem(String string) {
-    return Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              width: 10,
-            ),
-            const Text('\u2022',
-                style: TextStyle(color: Colors.black, fontSize: 20)),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(string, style: const TextStyle(color: Colors.black, fontSize: 16))
-          ],
-        ));
   }
 
   Widget _bookings() {
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (prev, next) => prev.myEvents.length != next.myEvents.length,
       builder: (context, state) {
-        if(state.status == ProfileStatus.success) {
-          if(state.myEvents.isEmpty) {
+        if (state.status == ProfileStatus.success) {
+          if (state.myEvents.isEmpty) {
             return _emptyBookings();
           } else {
-            return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "My bookings",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  const VerticalSpacer(
-                    height: 20,
-                  ),
-                  for (Booking booking in state.myEvents) _bookedItem(booking)
-                ]);
-
+            return Column(mainAxisSize: MainAxisSize.min, children: [
+              const Text(
+                "My bookings",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              const VerticalSpacer(
+                height: 20,
+              ),
+              for (Booking booking in state.myEvents) _bookedItem(booking)
+            ]);
           }
         }
-        if(state.status == ProfileStatus.loading) {
+        if (state.status == ProfileStatus.loading) {
           return const LoadingIndicator();
         }
         return Container();
       },
-
     );
   }
-   Widget _emptyBookings() {
-     return Container(
-       height: 100,
-       padding: const EdgeInsets.only(top: 16),
-       width: double.infinity,
-       decoration: const BoxDecoration(
-           color: Colors.white,
-           borderRadius: BorderRadius.all(Radius.circular(10))),
-       margin: const EdgeInsets.only(top: 16),
-       alignment: Alignment.center,
-       child: Column(
-         children: [
-           Text("My bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 16, fontWeight: FontWeight.bold),),
-           const VerticalSpacer(height: 16,),
-           Text("You have none active bookings", style: TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),)
-         ],
-       ),
-     );
-   }
 
-   Widget _bookedItem(Booking booking) {
+  Widget _emptyBookings() {
+    return Container(
+      height: 100,
+      padding: const EdgeInsets.only(top: 16),
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      margin: const EdgeInsets.only(top: 16),
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          Text(
+            "My bookings",
+            style: TextStyle(
+                color: Colors.black.withOpacity(0.85),
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
+          const VerticalSpacer(
+            height: 16,
+          ),
+          Text(
+            "You have none active bookings",
+            style:
+                TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _bookedItem(Booking booking) {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -219,14 +212,14 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-     CustomPaint(
-     painter: BoxShadowPainter(),
-     child: ClipPath(
-            clipper: _ImagePath(),
-            child: CachedNetworkImageContainer(
-              imageUrl: booking.stationImage,
+          CustomPaint(
+            painter: BoxShadowPainter(),
+            child: ClipPath(
+              clipper: _ImagePath(),
+              child: CachedNetworkImageContainer(
+                imageUrl: booking.stationImage,
+              ),
             ),
-          ),
           ),
         ],
       ),
@@ -251,31 +244,36 @@ class _UserTitleImage extends StatelessWidget {
             buildWhen: (previous, current) => previous.user != current.user,
             builder: (context, state) {
               MyUser user = state.user;
-              if(user.firstName != null && user.lastName != null && user.hasMembership != null) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const VerticalSpacer(
-                    height: 80,
-                  ),
-                  Text(
-                    "${state.user.firstName!} ${state.user.lastName!}",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const VerticalSpacer(
-                    height: 10,
-                  ),
-                  Text(
-                    state.user.hasMembership! ? "Is a member" : "Not a member",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ],
-              );}
+              if (user.firstName != null &&
+                  user.lastName != null &&
+                  user.hasMembership != null) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const VerticalSpacer(
+                      height: 80,
+                    ),
+                    Text(
+                      "${state.user.firstName!} ${state.user.lastName!}",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const VerticalSpacer(
+                      height: 10,
+                    ),
+                    Text(
+                      state.user.hasMembership!
+                          ? "Is a member"
+                          : "Not a member",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ],
+                );
+              }
               return const Text("Couldn't load user data");
             },
           ),
@@ -323,12 +321,12 @@ class BoxShadowPainter extends CustomPainter {
     double w = size.width;
     double h = size.height;
     final path = Path();
-    path.moveTo((w/5-5), 0); // sets start point
+    path.moveTo((w / 5 - 5), 0); // sets start point
     path.lineTo(-5, h); //pint 2
     path.lineTo(w, h); //point 3
     path.lineTo(w, 0);
 
-    canvas.drawShadow(path, Colors.black,3 , false);
+    canvas.drawShadow(path, Colors.black, 3, false);
   }
 
   @override
