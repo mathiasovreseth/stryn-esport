@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -199,28 +201,31 @@ class ProfilePage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Stasjon:  ${booking.stationName}",
+                  "Station:  ${booking.stationName}",
                   style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  "Dato:  ${DateFormat.yMMMd().format(booking.from)}",
+                  "Date:  ${DateFormat.yMMMd().format(booking.from)}",
                   style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  "Tid:     ${booking.from.hour} - ${booking.to.hour}",
+                  "Time:     ${booking.from.hour} - ${booking.to.hour}",
                   style: TextStyle(color: Colors.black.withOpacity(0.85)),
                   textAlign: TextAlign.left,
                 ),
               ],
             ),
           ),
-          ClipPath(
+     CustomPaint(
+     painter: BoxShadowPainter(),
+     child: ClipPath(
             clipper: _ImagePath(),
             child: CachedNetworkImageContainer(
               imageUrl: booking.stationImage,
             ),
+          ),
           ),
         ],
       ),
@@ -297,7 +302,6 @@ class _ImagePath extends CustomClipper<Path> {
   Path getClip(Size size) {
     double w = size.width;
     double h = size.height;
-
     final path = Path();
     path.moveTo(w / 5, 0); // sets start point
     path.lineTo(0, h); //pint 2
@@ -308,7 +312,27 @@ class _ImagePath extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
     return false;
+  }
+}
+
+class BoxShadowPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    double w = size.width;
+    double h = size.height;
+    final path = Path();
+    path.moveTo((w/5-5), 0); // sets start point
+    path.lineTo(-5, h); //pint 2
+    path.lineTo(w, h); //point 3
+    path.lineTo(w, 0);
+
+
+    canvas.drawShadow(path, Colors.black,3 , false);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }
