@@ -10,11 +10,19 @@ class CachedNetworkImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      fadeInCurve: Curves.easeIn,
-      fit: BoxFit.fill,
-      fadeInDuration: const Duration(seconds: 1),
       imageUrl: imageUrl,
-      placeholder: (context, url) => Container(
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
+
+          ),
+
+        ),
+      ),
+      placeholder: (context, url) =>  Container(
         color: Colors.grey,
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
