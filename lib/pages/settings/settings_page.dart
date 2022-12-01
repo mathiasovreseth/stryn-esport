@@ -25,19 +25,19 @@ class SettingsPage extends StatelessWidget {
           onBackClick: () => Navigator.of(context).pop()),
       body: Column(children: const [
         VerticalSpacer(height: 22),
-        _EditInformationButton(),
+        _EditInformationButton( key: Key("edit-information-button"),),
         VerticalSpacer(
           height: 18,
         ),
-        _ChangePasswordButton(),
+        _ChangePasswordButton(key: Key("change-password-button")),
         VerticalSpacer(
           height: 18,
         ),
-        _TermsOfserviceButton(),
+        _TermsOfserviceButton(key: Key("terms-of-service-button")),
         VerticalSpacer(
           height: 18,
         ),
-        _PrivacyPolicyButton(),
+        _PrivacyPolicyButton(key: Key("privacy-policy-button")),
       ]),
     );
   }
