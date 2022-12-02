@@ -4,8 +4,8 @@ import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/becomeMemberPage/become_member_page.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_cubit.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_state.dart';
+import 'package:stryn_esport/repositories/firebase_station_repository.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
-import '../../services/database.dart';
 import '../../widgets/appBars/custom_app_bar.dart';
 import '../../widgets/station_card.dart';
 
@@ -27,7 +27,7 @@ class BookingPage extends StatelessWidget {
 
   Widget _bookingPage(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => StationCubit(FirestoreDatabase()),
+      create: (BuildContext context) => StationCubit(FirebaseStationRepository()),
       child: Scaffold(
         appBar: const CustomAppBar(
           headerText: 'Book Stations',
