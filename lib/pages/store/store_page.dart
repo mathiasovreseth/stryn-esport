@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/pages/store/bloc/store_state.dart';
+import 'package:stryn_esport/repositories/firebase_store_repository.dart';
 import 'package:stryn_esport/services/database.dart';
 import 'package:stryn_esport/widgets/appBars/custom_app_bar.dart';
 import '../../widgets/loading_indicator.dart';
@@ -18,7 +19,7 @@ class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => StoreCubit(FirestoreDatabase()),
+        create: (BuildContext context) => StoreCubit(FirebaseStoreRepository()),
         child: Scaffold(
          appBar: const CustomAppBar(headerText: 'Butikk'),
          body: Padding(
