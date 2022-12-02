@@ -6,7 +6,6 @@ import 'package:stryn_esport/models/booking_models.dart';
 /// The app which hosts the home page which contains the calendar on it.
 
 import 'package:stryn_esport/models/station_model.dart';
-import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/calendar/bloc/calendar_cubit.dart';
 import 'package:stryn_esport/pages/calendar/bloc/calendar_state.dart';
@@ -195,7 +194,7 @@ AlertDialog _addNewEventDialogContent(BuildContext context, BuildContext dialogC
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-              "Do you want to book station 1 the\n${convertDateToText(details)}",
+              "Do you want to book ${station.name} the\n${convertDateToText(details)}",
               style: TextStyle(
                   color: Colors.black.withOpacity(0.85), fontSize: 14)),
           const VerticalSpacer(),
