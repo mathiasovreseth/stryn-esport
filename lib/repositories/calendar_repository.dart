@@ -1,6 +1,8 @@
 import 'package:stryn_esport/models/booking_models.dart';
 import 'package:stryn_esport/models/station_model.dart';
 
+
+/// Repository that manages the calendar page
 abstract class CalendarRepository {
   Stream<List<Booking>> getEvents(String stationId);
 

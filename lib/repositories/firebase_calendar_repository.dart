@@ -3,6 +3,9 @@ import 'package:stryn_esport/models/booking_models.dart';
 import 'package:stryn_esport/models/station_model.dart';
 import 'package:stryn_esport/repositories/calendar_repository.dart';
 
+
+/// Firestore repository that manages the calendar page
+/// Implements functions from CalendarRepository
 class FirebaseCalendarRepository extends CalendarRepository {
   @override
   Future<void> addEvent(Station station, DateTime from, DateTime to,
