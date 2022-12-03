@@ -31,7 +31,7 @@ class ChangeUserInformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ArrowBackAppBar(
-          headerText: 'Rediger profil',
+          headerText: 'Edit information',
           onBackClick: () => Navigator.of(context).pop()),
       body: SingleChildScrollView(
         child: BlocProvider(
@@ -315,7 +315,7 @@ class _AgeInput extends StatelessWidget {
                   children: [
                     Text(
                         state.age == null
-                            ? "Velg alder"
+                            ? "Choose age"
                             : formatDate(state.age!),
                         style: const TextStyle(
                             fontSize: 18,
@@ -327,7 +327,7 @@ class _AgeInput extends StatelessWidget {
               Positioned(
                   left: 11,
                   top: -7,
-                  child: Text("Alder",
+                  child: Text("Age",
                       style: TextStyle(
                           fontSize: 10,
                           color: Theme.of(context).primaryColor))),
@@ -365,7 +365,7 @@ class _SignUpButton extends StatelessWidget {
                       .signUpFormSubmitted();
                 }
               : null,
-          child: const Text('Bekreft endringer'),
+          child: const Text('Confirm changes'),
         );
       },
     );
