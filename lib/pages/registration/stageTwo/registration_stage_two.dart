@@ -13,6 +13,10 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+
+///Register new user page
+///Part two of the registration process
+///Form with user information
 class RegistrationFormStageTwo extends StatelessWidget {
   RegistrationFormStageTwo({
     Key? key,
@@ -55,7 +59,7 @@ class RegistrationFormStageTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ArrowBackAppBar(
-          headerText: 'Tillegs informasjon',
+          headerText: 'Additional information',
           onBackClick: () => Navigator.of(context).pop()),
       body: SingleChildScrollView(
         child: BlocProvider(
@@ -129,7 +133,7 @@ class _FirstNameInput extends StatelessWidget {
               .firstNameChange(firstName),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
-            labelText: 'Navn',
+            labelText: 'Name',
             labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
             suffixIcon: SvgPicture.asset(
               'assets/icons/person_mini.svg',
@@ -137,7 +141,7 @@ class _FirstNameInput extends StatelessWidget {
               width: 16,
               height: 16,
             ),
-            hintText: "Navn...",
+            hintText: "Name...",
             errorText: state.firstName.invalid ? 'invalid name' : null,
           ),
         );
@@ -160,14 +164,14 @@ class _LastNameInput extends StatelessWidget {
               .lastNameChange(lastName),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
-            labelText: 'Etternavn',
+            labelText: 'Surname',
             suffixIcon: SvgPicture.asset(
               'assets/icons/person_mini.svg',
               color: Colors.white,
               width: 16,
               height: 16,
             ),
-            hintText: 'Etternavn...',
+            hintText: 'Surname...',
             labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
             errorText: state.lastName.invalid ? 'invalid name' : null,
           ),
@@ -197,14 +201,14 @@ class _PhoneInput extends StatelessWidget {
           onEditingComplete: () => onEditComplete(context),
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
-            labelText: 'Telefon-nummer',
+            labelText: 'Phone number',
             suffixIcon: SvgPicture.asset(
               'assets/icons/person_mini.svg',
               color: Colors.white,
               width: 16,
               height: 16,
             ),
-            hintText: 'Telefon nummer...',
+            hintText: 'Phone number...',
             labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
             errorText:
                 state.phoneNumber.invalid ? 'invalid phone number' : null,
@@ -228,14 +232,14 @@ class _AddressInput extends StatelessWidget {
               context.read<RegistrationStageTwoCubit>().addressChange(address),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
-            labelText: 'Adresse',
+            labelText: 'Address',
             suffixIcon: SvgPicture.asset(
               'assets/icons/person_mini.svg',
               color: Colors.white,
               width: 16,
               height: 16,
             ),
-            hintText: 'Adresse...',
+            hintText: 'Address...',
             labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
             errorText: state.address.invalid ? 'invalid address' : null,
           ),
@@ -260,14 +264,14 @@ class _PostNumberInput extends StatelessWidget {
               .postNumberChange(postNumber),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
-            labelText: 'Post-nr',
+            labelText: 'Postal code',
             suffixIcon: SvgPicture.asset(
               'assets/icons/person_mini.svg',
               color: Colors.white,
               width: 16,
               height: 16,
             ),
-            hintText: 'Postnummer...',
+            hintText: 'Postal code...',
             labelStyle: Theme.of(context).primaryTextTheme.labelMedium,
             errorText: state.postNumber.invalid ? 'invalid post number' : null,
           ),
@@ -308,7 +312,7 @@ class _AgeInput extends StatelessWidget {
                   children: [
                     Text(
                         state.age == null
-                            ? "Velg alder"
+                            ? "Select age"
                             : formatDate(state.age!),
                         style: const TextStyle(
                             fontSize: 14,
@@ -320,7 +324,7 @@ class _AgeInput extends StatelessWidget {
               Positioned(
                   left: 11,
                   top: -7,
-                  child: Text("Alder",
+                  child: Text("Age",
                       style: TextStyle(
                           fontSize: 10,
                           color: Theme.of(context).primaryColor))),

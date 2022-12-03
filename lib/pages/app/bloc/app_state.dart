@@ -6,6 +6,7 @@ enum AppStatus {
   unauthenticated,
 }
 
+/// Containts the appstate/auth state
 class AppState extends Equatable {
   const AppState._({
     required this.status,

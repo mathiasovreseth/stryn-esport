@@ -6,6 +6,7 @@ import 'package:stryn_esport/pages/app/bloc/app_event.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
+/// represents the Appbloc containing the app state and auth events
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,

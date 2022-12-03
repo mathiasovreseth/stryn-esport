@@ -20,7 +20,7 @@ ThemeData get customTheme {
     ),
     fontFamily: GoogleFonts.manrope().fontFamily,
     textTheme: const TextTheme(
-      subtitle1: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      subtitle1: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
       subtitle2: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
     ).apply(
       bodyColor: Colors.black.withOpacity(.85),

@@ -9,6 +9,7 @@ import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/buttons/my_text_button.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+///Represents the user settings page
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -50,6 +51,8 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
+///Represents the edit information button
+///Redirects the user to the information edit page
 class _EditInformationButton extends StatelessWidget {
   const _EditInformationButton({Key? key}) : super(key: key);
 
@@ -77,6 +80,8 @@ class _EditInformationButton extends StatelessWidget {
   }
 }
 
+///Represents the change password button
+///Redirects the user to the change password page
 class _ChangePasswordButton extends StatelessWidget {
   const _ChangePasswordButton({Key? key}) : super(key: key);
 
@@ -104,6 +109,8 @@ class _ChangePasswordButton extends StatelessWidget {
   }
 }
 
+///Represents the terms of service button
+///Redirects the user to the terms of service page
 class _TermsOfserviceButton extends StatelessWidget {
   const _TermsOfserviceButton({Key? key}) : super(key: key);
 
@@ -131,6 +138,8 @@ class _TermsOfserviceButton extends StatelessWidget {
   }
 }
 
+///Represents the privacy policy button
+///Redirects the user to the privacy policy page
 class _PrivacyPolicyButton extends StatelessWidget {
   const _PrivacyPolicyButton({Key? key}) : super(key: key);
 

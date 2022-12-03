@@ -4,6 +4,7 @@ import 'package:stryn_esport/pages/loginPage/bloc/login_state.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
+/// Contains login events and a login state.
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
 

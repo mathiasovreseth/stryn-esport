@@ -10,6 +10,8 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import '../../widgets/appBars/custom_app_bar.dart';
 import '../../widgets/station_card.dart';
 
+///Represents the booking page
+///List over active station user is able to book
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
 

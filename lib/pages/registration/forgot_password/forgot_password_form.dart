@@ -10,6 +10,7 @@ import '../../../widgets/loading_indicator.dart';
 import 'bloc/forgot_password_cubit.dart';
 import 'bloc/forgot_password_state.dart';
 
+///Forgot password page
 class ForgotPasswordForm extends StatefulWidget {
   ForgotPasswordForm({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
@@ -31,7 +32,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ArrowBackAppBar(
-          headerText: 'Glømt passord',
+          headerText: 'Forgot password',
           onBackClick: () => Navigator.of(context).pop()),
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
@@ -56,6 +57,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   _EmailInput(),
                   Divider(height: 12, color: Theme.of(context).backgroundColor),
@@ -84,10 +86,10 @@ class _EmailInput extends StatelessWidget {
               context.read<ForgotPasswordCubit>().emailChange(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
-            hintText: 'E-post...',
+            hintText: 'Email...',
             context: context,
             errorText: state.email.invalid ? 'invalid email' : null,
-            label: 'E-post',
+            label: 'Email',
             suffixIcon: 'assets/icons/email_small.svg',
           ),
         );
@@ -111,7 +113,7 @@ class _ResettButton extends StatelessWidget {
                         context.read<ForgotPasswordCubit>().sendEmail();
                       }
                     : null,
-                child: const Text('Send nytt passord'),
+                child: const Text('Send password reset'),
               );
       },
     );

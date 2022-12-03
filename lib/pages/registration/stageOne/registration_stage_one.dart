@@ -11,6 +11,9 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+///Register new user page
+///Part one of the registration process
+///Form with email and password
 class RegistrationFormStageOne extends StatefulWidget {
   RegistrationFormStageOne({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
@@ -31,7 +34,7 @@ class _RegistrationFormStageOneState extends State<RegistrationFormStageOne> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ArrowBackAppBar(
-          headerText: 'Registrer bruker',
+          headerText: 'Register user',
           onBackClick: () => Navigator.of(context).pop()),
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
@@ -88,10 +91,10 @@ class _EmailInput extends StatelessWidget {
               context.read<RegistrationStageOneCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
-            hintText: 'E-post...',
+            hintText: 'Email',
             context: context,
             errorText: state.email.invalid ? 'invalid email' : null,
-            label: 'E-post',
+            label: 'Email',
             suffixIcon: 'assets/icons/email_small.svg',
           ),
         );
@@ -114,10 +117,10 @@ class _PasswordInput extends StatelessWidget {
               .passwordChanged(password),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Passord...',
+            hintText: 'Password...',
             context: context,
             errorText: state.password.invalid ? 'invalid password' : null,
-            label: 'Passord',
+            label: 'Password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
@@ -142,12 +145,12 @@ class _ConfirmPasswordInput extends StatelessWidget {
               .confirmedPasswordChanged(confirmPassword),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Bekreft passord...',
+            hintText: 'Confirm password',
             context: context,
             errorText: state.confirmedPassword.invalid
                 ? 'passwords do not match'
                 : null,
-            label: 'Bekreft passord',
+            label: 'Confirm password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
@@ -186,7 +189,7 @@ class _ContinueButton extends StatelessWidget {
                   }
                 }
               : null,
-          child: const Text('Neste'),
+          child: const Text('Next'),
         );
       },
     );

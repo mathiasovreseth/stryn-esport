@@ -5,6 +5,7 @@ import '../../../loginPage/utils/validation_config.dart';
 
 enum ConfirmPasswordValidationError { invalid }
 
+/// Contains the state and a status for forgot password page
 class ForgotPasswordState extends Equatable {
   const ForgotPasswordState({
     this.email = const Email.pure(),

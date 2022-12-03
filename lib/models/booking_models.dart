@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+///Represents an instance of a booking
 class Booking {
   const Booking({
     required this.bookingId,
@@ -26,29 +27,7 @@ class Booking {
 
   final String userId;
 
-  Booking copyWith({
-    required String bookingId,
-    required String stationId,
-    required String stationName,
-    required String stationImage,
-    required DateTime from,
-    required DateTime to,
-    required String userId,
-    required String subject,
-    // required List<SegmentOfUser> lastThreeLikes,
-  }) {
-    return Booking(
-      bookingId: bookingId,
-      stationId: stationId,
-      stationImage: stationImage,
-      stationName: stationName,
-      from: from,
-      to: to,
-      userId: userId,
-      subject: subject,
-    );
-  }
-
+  ///Creates a booking from a firestore snapshot
   Booking.fromQueryDocumentSnapshot(DocumentSnapshot snapshot)
       : bookingId = snapshot.id,
         stationId = snapshot.get('stationId'),

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 
+/// Contains the state and status of the login data
 class LoginState extends Equatable {
   const LoginState({
     this.email = const Email.pure(),

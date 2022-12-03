@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+
+///Represents an instance of a store item
 class StoreItem extends Equatable {
   final String id;
   final String name;
@@ -20,6 +22,7 @@ class StoreItem extends Equatable {
   @override
   List<Object?> get props => [id, name, active, price, description];
 
+  ///Creates a store item from a firestore snapshot
   StoreItem.fromQueryDocumentSnapshot(Map<String, dynamic> data)
       : id = data["id"],
         name = data["name"] ?? "",

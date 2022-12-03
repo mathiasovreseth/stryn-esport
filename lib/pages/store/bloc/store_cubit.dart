@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/pages/store/bloc/store_state.dart';
 import 'package:stryn_esport/repositories/store_repository.dart';
 
+/// Contains events and state for the items used in the store page
 class StoreCubit extends Cubit<StoreState> {
   StoreCubit(this._storeRepository) : super(const StoreState()) {
     getStoreItems();

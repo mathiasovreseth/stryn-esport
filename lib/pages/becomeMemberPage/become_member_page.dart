@@ -3,6 +3,8 @@ import 'package:stryn_esport/widgets/appBars/custom_app_bar.dart';
 import 'package:stryn_esport/widgets/become_main_member.dart';
 import 'package:stryn_esport/widgets/become_support_member.dart';
 
+///Represents become member page
+///Loads the different memberships cards
 class BecomeMemberPage extends StatelessWidget {
   const BecomeMemberPage({super.key});
 

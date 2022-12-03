@@ -3,6 +3,8 @@ import 'package:stryn_esport/models/station_model.dart';
 
 enum Status { initial, loading, success, failure }
 
+/// Contains the list of stations and it's status for the stations
+///
 class StationsState extends Equatable {
   const StationsState({
     this.stations = const [],

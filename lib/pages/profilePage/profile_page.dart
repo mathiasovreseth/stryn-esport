@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,12 +10,14 @@ import 'package:stryn_esport/pages/profilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
 import 'package:stryn_esport/widgets/custom_bullet_list.dart';
-import 'package:stryn_esport/widgets/images/cache_image_container.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
 
+
+///Profile page in the application
+///Holds an overview of the users bookings
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
 
@@ -81,6 +81,7 @@ class ProfilePage extends StatelessWidget {
         ));
   }
 
+  ///list of membership advantages
   final List<String> bulletListAdvantages = [
     "Access to all club activities",
     "Access to our Gaming Station Parks",
@@ -90,6 +91,8 @@ class ProfilePage extends StatelessWidget {
     "Access to the Stryn E-Sport discord server"
   ];
 
+  ///information about advantages and how to become a member
+  ///is loaded if user is not a member
   Widget _becomeMemberInfo() {
     return Column(children: [
       const Text(
@@ -112,6 +115,7 @@ class ProfilePage extends StatelessWidget {
     ]);
   }
 
+  ///Displays the upcoming bookings of the user
   Widget _bookings() {
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (prev, next) => prev.myEvents.length != next.myEvents.length,
@@ -143,6 +147,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  ///displayed if user don't have any upcoming bookings
   Widget _emptyBookings() {
     return Container(
       height: 100,
@@ -175,6 +180,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  ///Represents a booked item
   Widget _bookedItem(Booking booking) {
     return Container(
       width: double.infinity,
@@ -234,6 +240,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
+///Represents the user title card
 class _UserTitleImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -303,6 +310,7 @@ class _UserTitleImage extends StatelessWidget {
   }
 }
 
+///Represents the clip path of the station image in the bookings overview
 class _ImagePath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -322,6 +330,7 @@ class _ImagePath extends CustomClipper<Path> {
   }
 }
 
+///Represents the drop shadow of the clip path to the booked station
 class BoxShadowPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

@@ -9,6 +9,7 @@ import 'package:stryn_esport/repositories/calendar_repository.dart';
 
 import '../../../models/station_model.dart';
 
+/// Contains state, fetch, update and delete operations for a calendar's station
 class CalendarCubit extends Cubit<CalendarState> {
   CalendarCubit(this._calendarRepository, this._user, this.stationId)
       : super(const CalendarState()) {
