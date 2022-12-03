@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
+/// Represents a reusable arrow back app bar
 class ArrowBackAppBar extends StatelessWidget with PreferredSizeWidget {
   const ArrowBackAppBar(
       {required this.onBackClick, required this.headerText, Key? key})

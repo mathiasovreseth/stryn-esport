@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Represents a reusable text button widget
 class MyTextButton extends StatelessWidget {
   const MyTextButton({Key? key, required this.onPressed, required this.child})
       : super(key: key);

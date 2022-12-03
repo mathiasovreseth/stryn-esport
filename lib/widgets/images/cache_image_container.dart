@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+/// Represents a reusable cached network image container widget
 class CachedNetworkImageContainer extends StatelessWidget {
   const CachedNetworkImageContainer(
       {Key? key, required this.imageUrl, this.borderRadius = 10})

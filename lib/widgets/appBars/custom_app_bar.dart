@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Represents a reusable custom app bar, without the arrow back option
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   const CustomAppBar({required this.headerText, Key? key}) : super(key: key);
   final String headerText;

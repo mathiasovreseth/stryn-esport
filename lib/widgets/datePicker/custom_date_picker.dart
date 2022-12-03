@@ -1,6 +1,7 @@
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:stryn_esport/widgets/datePicker/date_picker_utils.dart';
 
+/// Represents a custom picker when picking dates
 class CustomPicker extends CommonPickerModel {
   String digits(int value, int length) {
     return '$value'.padLeft(length, "0");

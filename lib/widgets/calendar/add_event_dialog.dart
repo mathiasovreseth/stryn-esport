@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/calendar/calendar_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+/// Displays a pop up to confirm a booking
+/// when booking a station in the calendar
 class AddEventDialogContent extends StatelessWidget {
   const AddEventDialogContent({
     Key? key,
