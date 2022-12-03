@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_cubit.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_state.dart';
-import 'package:stryn_esport/repositories/auth_repository.dart';
 import 'package:stryn_esport/repositories/firebase_user_repository.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/datePicker/custom_date_picker.dart';
@@ -50,11 +49,9 @@ class ChangeUserInformationPage extends StatelessWidget {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(
-                          createSuccessSnackBar(
-                              'Profile updated!', context),
+                          createSuccessSnackBar('Profile updated!', context),
                         );
                       Navigator.of(context).pop();
-
                     } else if (state.status.isSubmissionFailure) {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()

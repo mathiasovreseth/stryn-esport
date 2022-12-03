@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/settings/change_password.dart/bloc/change_password_cubit.dart';
@@ -17,6 +14,7 @@ import 'package:stryn_esport/widgets/spacer.dart';
 class ChangePasswordPage extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const ChangePasswordPage({Key? key});
+
   static Route route() {
     return MaterialPageRoute<void>(
       builder: (_) => const ChangePasswordPage(),

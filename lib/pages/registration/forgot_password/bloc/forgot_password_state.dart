@@ -3,7 +3,8 @@ import 'package:formz/formz.dart';
 
 import '../../../loginPage/utils/validation_config.dart';
 
-enum ConfirmPasswordValidationError {invalid}
+enum ConfirmPasswordValidationError { invalid }
+
 class ForgotPasswordState extends Equatable {
   const ForgotPasswordState({
     this.email = const Email.pure(),
@@ -29,5 +30,4 @@ class ForgotPasswordState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
-
 }

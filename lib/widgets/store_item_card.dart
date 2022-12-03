@@ -11,7 +11,8 @@ class StoreItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(StoreItemPage.route(storeItem: item)),
+      onTap: () =>
+          Navigator.of(context).push(StoreItemPage.route(storeItem: item)),
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         clipBehavior: Clip.hardEdge,

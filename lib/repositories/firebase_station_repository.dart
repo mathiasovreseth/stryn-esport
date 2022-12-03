@@ -8,7 +8,7 @@ class FirebaseStationRepository extends StationRepository {
 
   @override
   Stream<List<Station>> stationsStream() => _service.collectionStream(
-    path: APIPath.stations(),
-    builder: (data) => Station.fromQueryDocumentSnapshot(data),
-  );
+        path: APIPath.stations(),
+        builder: (data) => Station.fromQueryDocumentSnapshot(data),
+      );
 }

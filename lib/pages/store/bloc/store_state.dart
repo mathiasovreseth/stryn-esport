@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:stryn_esport/models/station_model.dart';
 import 'package:stryn_esport/models/store_item.dart';
 
 enum Status { initial, loading, success, failure }

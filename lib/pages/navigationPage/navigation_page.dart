@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/bookingPage/booking_page.dart';
-import 'package:stryn_esport/pages/porfilePage/profile_page.dart';
+import 'package:stryn_esport/pages/profilePage/profile_page.dart';
 import 'package:stryn_esport/widgets/persistent_tab.dart';
 
 import '../store/store_page.dart';
@@ -18,7 +18,8 @@ class _NavigationPage extends State<NavigationPage> {
   late List<Widget> _pages;
 
   void _onItemTapped(int index) {
-    _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    _pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     setState(() {
       _selectedIndex = index;
     });
@@ -27,7 +28,7 @@ class _NavigationPage extends State<NavigationPage> {
   @override
   void initState() {
     _pageController = PageController();
-    _pages =  [
+    _pages = [
       PersistantTab(
         child: ProfilePage(
           key: const PageStorageKey('profilePage'),
@@ -39,7 +40,6 @@ class _NavigationPage extends State<NavigationPage> {
       const PersistantTab(
         child: StorePage(key: PageStorageKey('StorePage')),
       ),
-
     ];
     super.initState();
   }
@@ -64,7 +64,7 @@ class _NavigationPage extends State<NavigationPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
-            label: 'Butikk',
+            label: 'Store',
           ),
         ],
         currentIndex: _selectedIndex,

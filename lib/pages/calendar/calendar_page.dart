@@ -4,14 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/models/booking_models.dart';
 
 /// The app which hosts the home page which contains the calendar on it.
-
 import 'package:stryn_esport/models/station_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/calendar/bloc/calendar_cubit.dart';
 import 'package:stryn_esport/pages/calendar/bloc/calendar_state.dart';
 import 'package:stryn_esport/pages/calendar/calendar_utils.dart';
 import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
-
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
@@ -85,13 +83,8 @@ class _CalendarState extends State<_Calendar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: _getCalendar(
-          _calendarController,
-          MeetingDataSource(widget.events),
-          _minDate,
-          _maxDate,
-          context,
-          widget.station),
+      child: _getCalendar(_calendarController, MeetingDataSource(widget.events),
+          _minDate, _maxDate, context, widget.station),
     );
   }
 }
@@ -107,38 +100,39 @@ SfCalendar _getCalendar([
   Future<void> _onCalendarTap(
       BuildContext cubitContext, CalendarTapDetails details) async {
     Booking? booking = details.appointments?.first;
-    if(booking != null) {
+    if (booking != null) {
       String userId = cubitContext.read<AppBloc>().state.user.id;
-        if(booking.userId == userId) {
-          return showDialog<void>(
-            context: cubitContext,
-            barrierDismissible: false, // user must tap button!
-            builder: (context) => _addRemoveEventDialogContent(cubitContext, context, details, station!),
-          );
-        } else {
-          showNotOwnerSnackBar(cubitContext);
-        }
-    } else {
-      bool canAddMoreBookings = await cubitContext.read<CalendarCubit>().checkNrOfEventsInADay(station!, details.date!);
-      if(canAddMoreBookings) {
+      if (booking.userId == userId) {
         return showDialog<void>(
           context: cubitContext,
           barrierDismissible: false, // user must tap button!
-          builder: (context) =>
-              _addNewEventDialogContent(cubitContext, context, details, station),
+          builder: (context) => _addRemoveEventDialogContent(
+              cubitContext, context, details, station!),
+        );
+      } else {
+        showNotOwnerSnackBar(cubitContext);
+      }
+    } else {
+      bool canAddMoreBookings = await cubitContext
+          .read<CalendarCubit>()
+          .checkNrOfEventsInADay(station!, details.date!);
+      if (canAddMoreBookings) {
+        return showDialog<void>(
+          context: cubitContext,
+          barrierDismissible: false, // user must tap button!
+          builder: (context) => _addNewEventDialogContent(
+              cubitContext, context, details, station),
         );
       } else {
         showToManyBookingsSnackBar(cubitContext);
       }
-
     }
   }
 
   return SfCalendar(
     controller: calendarController,
     dataSource: calendarDataSource,
-    onTap: (CalendarTapDetails details) =>
-        _onCalendarTap(context!, details),
+    onTap: (CalendarTapDetails details) => _onCalendarTap(context!, details),
     view: CalendarView.week,
     headerStyle: CalendarHeaderStyle(
         textStyle:
@@ -169,19 +163,19 @@ SfCalendar _getCalendar([
   );
 }
 
-AlertDialog _addNewEventDialogContent(BuildContext context, BuildContext dialogContext, CalendarTapDetails details, Station station) {
-
+AlertDialog _addNewEventDialogContent(BuildContext context,
+    BuildContext dialogContext, CalendarTapDetails details, Station station) {
   Future<void> onConfirm() async {
     Navigator.of(dialogContext).pop();
-    bool success = await context
-        .read<CalendarCubit>()
-        .addEvent(station, details.date!);
-    if(success) {
-        showBookingAddedSnackBar(context);
+    bool success =
+        await context.read<CalendarCubit>().addEvent(station, details.date!);
+    if (success) {
+      showBookingAddedSnackBar(context);
     } else {
-       showBookingErrorSnackBar(context);
+      showBookingErrorSnackBar(context);
     }
   }
+
   return AlertDialog(
     contentPadding: EdgeInsets.zero,
     content: Container(
@@ -215,9 +209,7 @@ AlertDialog _addNewEventDialogContent(BuildContext context, BuildContext dialogC
                           color: Colors.black.withOpacity(0.85),
                           fontWeight: FontWeight.bold),
                     )),
-                TextButton(
-                    onPressed: onConfirm,
-                    child: const Text("Bekreft")),
+                TextButton(onPressed: onConfirm, child: const Text("Bekreft")),
               ],
             ),
           ),
@@ -227,14 +219,14 @@ AlertDialog _addNewEventDialogContent(BuildContext context, BuildContext dialogC
   );
 }
 
-AlertDialog _addRemoveEventDialogContent(
-    BuildContext context, BuildContext dialogContext, CalendarTapDetails details, Station station) {
+AlertDialog _addRemoveEventDialogContent(BuildContext context,
+    BuildContext dialogContext, CalendarTapDetails details, Station station) {
   Future<void> onRemove() async {
     Navigator.of(dialogContext).pop();
     bool success = await context
         .read<CalendarCubit>()
         .removeEvent(station, details.appointments!.first! as Booking);
-    if(success) {
+    if (success) {
       showBookingRemovedSnackBar(context);
     } else {
       showBookingErrorSnackBar(context);
@@ -261,7 +253,7 @@ AlertDialog _addRemoveEventDialogContent(
             padding: const EdgeInsets.only(left: 24, right: 24, bottom: 6),
             decoration: BoxDecoration(
               border:
-              Border.all(width: .5, color: Colors.black.withOpacity(0.3)),
+                  Border.all(width: .5, color: Colors.black.withOpacity(0.3)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -274,9 +266,7 @@ AlertDialog _addRemoveEventDialogContent(
                           color: Colors.black.withOpacity(0.85),
                           fontWeight: FontWeight.bold),
                     )),
-                TextButton(
-                    onPressed: onRemove,
-                    child: const Text("Fjern")),
+                TextButton(onPressed: onRemove, child: const Text("Fjern")),
               ],
             ),
           ),
@@ -285,7 +275,6 @@ AlertDialog _addRemoveEventDialogContent(
     ),
   );
 }
-
 
 Widget appointmentBuilder(BuildContext context,
     CalendarAppointmentDetails calendarAppointmentDetails) {

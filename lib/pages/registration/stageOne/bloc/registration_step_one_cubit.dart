@@ -2,12 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/registration/stageOne/bloc/registration_stage_one_state.dart';
-
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
-
 class RegistrationStageOneCubit extends Cubit<RegistrationStageOneState> {
-  RegistrationStageOneCubit(this._authenticationRepository) : super(const RegistrationStageOneState());
+  RegistrationStageOneCubit(this._authenticationRepository)
+      : super(const RegistrationStageOneState());
 
   final AuthenticationRepository _authenticationRepository;
 

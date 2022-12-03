@@ -1,16 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_state.dart';
-
-import 'package:stryn_esport/repositories/auth_repository.dart';
 import 'package:stryn_esport/repositories/user_repository.dart';
 
 class EditUserInformationCubit extends Cubit<EditUserInformationState> {
-  EditUserInformationCubit(
-      {required this.userRepository, required this.user})
+  EditUserInformationCubit({required this.userRepository, required this.user})
       : super(EditUserInformationState(
             firstName: Name.dirty(user.firstName!),
             lastName: Name.dirty(user.lastName!),
@@ -129,8 +125,7 @@ class EditUserInformationCubit extends Cubit<EditUserInformationState> {
           lastName: state.lastName.value,
           phoneNumber: state.phoneNumber.value,
           age: state.age!,
-          postNumber: state.postNumber.value
-      );
+          postNumber: state.postNumber.value);
       await userRepository.editUser(updatedUser: updatedUser);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } catch (e) {

@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '206835097238',
     projectId: 'strynesport-624d5',
     storageBucket: 'strynesport-624d5.appspot.com',
-    iosClientId: '206835097238-klatolc1rigpsq3vsq7ftre2sua8no84.apps.googleusercontent.com',
+    iosClientId:
+        '206835097238-klatolc1rigpsq3vsq7ftre2sua8no84.apps.googleusercontent.com',
     iosBundleId: 'com.example.strynEsport',
   );
 }

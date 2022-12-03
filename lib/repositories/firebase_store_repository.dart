@@ -9,7 +9,7 @@ class FirebaseStoreRepository extends StoreRepository {
 
   @override
   Stream<List<StoreItem>> getStoreItems() => _service.collectionStream(
-    path: APIPath.items(),
-    builder: (data) => StoreItem.fromQueryDocumentSnapshot(data),
-  );
+        path: APIPath.items(),
+        builder: (data) => StoreItem.fromQueryDocumentSnapshot(data),
+      );
 }

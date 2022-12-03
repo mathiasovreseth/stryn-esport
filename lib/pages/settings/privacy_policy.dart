@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 
@@ -17,7 +16,7 @@ class PrivacyPolicy extends StatelessWidget {
       appBar: ArrowBackAppBar(
           headerText: 'Personverns erklering',
           onBackClick: () => Navigator.of(context).pop()),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Text(

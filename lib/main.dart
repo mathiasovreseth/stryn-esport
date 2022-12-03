@@ -1,8 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:stryn_esport/pages/app/app.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
+
 import 'firebase_options.dart';
 
 Future<void> main() async {

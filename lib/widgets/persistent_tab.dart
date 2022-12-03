@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 /// keeps pages alive when changing tabs
 class PersistantTab extends StatefulWidget {
   const PersistantTab({required this.child});
@@ -10,6 +9,7 @@ class PersistantTab extends StatefulWidget {
   @override
   PersistantTabState createState() => PersistantTabState();
 }
+
 class PersistantTabState extends State<PersistantTab>
     with AutomaticKeepAliveClientMixin {
   @override
