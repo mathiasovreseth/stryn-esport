@@ -28,7 +28,7 @@ class ChangePasswordPage extends StatelessWidget {
           AuthenticationRepository(), context.read<AppBloc>().state.user),
       child: Scaffold(
           appBar: ArrowBackAppBar(
-              headerText: "Endre passord",
+              headerText: "Change password",
               onBackClick: () => Navigator.of(context).pop()),
           resizeToAvoidBottomInset: false,
           body: SafeArea(
@@ -99,9 +99,9 @@ class _OldPasswordInput extends StatelessWidget {
               context.read<ChangePasswordCubit>().oldPasswordChanged(password),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Gjeldande passord...',
+            hintText: 'Current password...',
             context: context,
-            label: 'Gjeldande passord',
+            label: 'Current password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
@@ -123,10 +123,10 @@ class _PasswordInput extends StatelessWidget {
               context.read<ChangePasswordCubit>().passwordChanged(password),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Nytt passord...',
+            hintText: 'New password...',
             context: context,
             errorText: state.password.invalid ? 'invalid password' : null,
-            label: 'Nytt passord',
+            label: 'New password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
@@ -151,12 +151,12 @@ class _ConfirmPasswordInput extends StatelessWidget {
               .confirmPasswordChanged(confirmPassword),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Bekreft passord...',
+            hintText: 'Confirm password...',
             context: context,
             errorText: state.confirmedPassword.invalid
                 ? 'passwords do not match'
                 : null,
-            label: 'Bekreft passord',
+            label: 'Confirm password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );
@@ -188,7 +188,7 @@ class _ChangePasswordButton extends StatelessWidget {
                         context.read<ChangePasswordCubit>().onSubmit();
                       }
                     : null,
-                child: const Text('Endre passord'),
+                child: const Text('Change password'),
               );
       },
     );

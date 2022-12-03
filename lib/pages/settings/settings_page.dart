@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stryn_esport/pages/settings/change_password.dart/change_password.dart';
@@ -40,6 +41,10 @@ class SettingsPage extends StatelessWidget {
           height: 18,
         ),
         _PrivacyPolicyButton(key: Key("privacy-policy-button")),
+        VerticalSpacer(
+          height: 32,
+        ),
+        _SignOutButton()
       ]),
     );
   }
@@ -59,7 +64,7 @@ class _EditInformationButton extends StatelessWidget {
             MyTextButton(
                 onPressed: () => Navigator.of(context)
                     .push(ChangeUserInformationPage.route()),
-                child: Text("Rediger personalia",
+                child: Text("Edit information",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(
               'assets/icons/user.png',
@@ -86,7 +91,7 @@ class _ChangePasswordButton extends StatelessWidget {
             MyTextButton(
                 onPressed: () =>
                     Navigator.of(context).push(ChangePasswordPage.route()),
-                child: Text("Endre passord",
+                child: Text("Change password",
                     style: Theme.of(context).textTheme.subtitle2)),
             SvgPicture.asset(
               'assets/icons/lock_small.svg',
@@ -113,7 +118,7 @@ class _TermsOfserviceButton extends StatelessWidget {
             MyTextButton(
                 onPressed: () =>
                     Navigator.of(context).push(TermsOfService.route()),
-                child: Text("Vilkår for bruk",
+                child: Text("Terms of service",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(
               'assets/icons/document.png',
@@ -140,7 +145,7 @@ class _PrivacyPolicyButton extends StatelessWidget {
             MyTextButton(
                 onPressed: () =>
                     Navigator.of(context).push(PrivacyPolicy.route()),
-                child: Text("Personverns erklering",
+                child: Text("Privacy policy",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(
               'assets/icons/document.png',
@@ -149,6 +154,25 @@ class _PrivacyPolicyButton extends StatelessWidget {
               height: 24,
             )
           ]),
+    );
+  }
+}
+
+class _SignOutButton extends StatelessWidget {
+  const _SignOutButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: MyTextButton(
+          onPressed: () => {
+                FirebaseAuth.instance.signOut(),
+                Navigator.of(context).pop(),
+              },
+          child: Text("Sign out",
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor, fontSize: 18))),
     );
   }
 }
