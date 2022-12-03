@@ -7,24 +7,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:stryn_esport/pages/settings/settings_page.dart';
 
-import 'package:stryn_esport/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('email input-field is present', (WidgetTester tester) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: SettingsPage(),
+      )
+    );
+    expect(find.byKey(const Key('edit-information-button')), findsWidgets);
+    expect(find.byKey(const Key('change-password-button')), findsWidgets);
+    expect(find.byKey(const Key('terms-of-service-button')), findsWidgets);
+    expect(find.byKey(const Key('privacy-policy-button')), findsWidgets);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
   });
 }

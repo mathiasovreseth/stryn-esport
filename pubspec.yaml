@@ -1,7 +1,6 @@
 name: stryn_esport
 description: An flutter app for Stryn-esport
-
-# The following line prevents the package from being accidentally published to
+  The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -18,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=2.17.3 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,6 +33,24 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^3.0.1
+  firebase_core: ^1.18.0
+  firebase_auth: ^3.3.20
+  cloud_firestore: ^3.1.18
+  flutterfire_ui: ^0.4.2
+  flutter_datetime_picker: ^1.5.1
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  timezone: ^0.8.0
+  font_awesome_flutter: ^10.1.0
+  flow_builder: ^0.0.9
+  formz: ^0.4.1
+  getwidget: ^3.0.1
+  intl: ^0.17.0
+  calendar_view: ^1.0.0
+  syncfusion_flutter_calendar: ^20.3.47
+  flutter_native_splash: ^2.2.15
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +63,13 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+#https://pub.dev/packages/flutter_native_splash
+flutter_native_splash:
+
+  #color: "#42a5f5"
+  background_image: "assets/images/splashscreen.png"
+  android_12:
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -56,6 +80,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
