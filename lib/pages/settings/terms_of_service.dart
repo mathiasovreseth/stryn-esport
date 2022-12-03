@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 
+///Represents the terms of service page
 class TermsOfService extends StatelessWidget {
   const TermsOfService({Key? key}) : super(key: key);
 
@@ -14,7 +15,7 @@ class TermsOfService extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ArrowBackAppBar(
-          headerText: 'Vilkår for bruk',
+          headerText: 'Terms of service',
           onBackClick: () => Navigator.of(context).pop()),
       body: SingleChildScrollView(
         child: Padding(

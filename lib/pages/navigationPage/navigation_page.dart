@@ -5,6 +5,9 @@ import 'package:stryn_esport/widgets/persistent_tab.dart';
 
 import '../store/store_page.dart';
 
+
+///landing page of the application
+///handles the navigation
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
 
