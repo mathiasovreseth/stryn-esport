@@ -78,14 +78,13 @@ class ProfilePage extends StatelessWidget {
         ));
   }
 
-  //TODO: get this from database
   final List<String> bulletListAdvantages = [
-    "Tilgang til aktiviteter i alle våre klubber",
-    "Spille på våre maskinparker",
-    "Medlemsrabatt på klubbstore",
-    "Medlemsrabatt på arrangementer",
-    "Medlemsrabatt på utstyr og tilbehør",
-    "Tilgang til Stryn e-sport sin Discord"
+    "Access to all club activities",
+    "Access to our Gaming Station Parks",
+    "Member discount on the club store",
+    "Member discount on various events",
+    "Members discount on various different accessories",
+    "Access to the Stryn E-Sport discord server"
   ];
 
   Widget _becomeMemberInfo() {

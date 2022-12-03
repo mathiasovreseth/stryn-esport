@@ -64,7 +64,7 @@ class _NavigationPage extends State<NavigationPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
-            label: 'Butikk',
+            label: 'Store',
           ),
         ],
         currentIndex: _selectedIndex,
