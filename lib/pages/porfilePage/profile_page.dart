@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -212,12 +213,19 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-          CustomPaint(
-            painter: BoxShadowPainter(),
-            child: ClipPath(
-              clipper: _ImagePath(),
-              child: CachedNetworkImageContainer(
-                imageUrl: booking.stationImage,
+          SizedBox(
+            width: 160,
+            child: CustomPaint(
+              painter: BoxShadowPainter(),
+              child: ClipPath(
+                clipper: _ImagePath(),
+                child: CachedNetworkImage(
+                  imageUrl: booking.stationImage,
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
           ),

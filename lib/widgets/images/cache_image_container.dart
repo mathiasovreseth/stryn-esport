@@ -1,11 +1,12 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CachedNetworkImageContainer extends StatelessWidget {
-  const CachedNetworkImageContainer({Key? key, required this.imageUrl}) : super(key: key);
+  const CachedNetworkImageContainer(
+      {Key? key, required this.imageUrl, this.borderRadius = 10})
+      : super(key: key);
   final String imageUrl;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +17,11 @@ class CachedNetworkImageContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.cover,
-
+            fit: BoxFit.contain,
           ),
-
         ),
       ),
-      placeholder: (context, url) =>  Container(
+      placeholder: (context, url) => Container(
         color: Colors.grey,
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
