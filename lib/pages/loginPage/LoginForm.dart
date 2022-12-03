@@ -1,5 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_cubit.dart';
 import 'package:stryn_esport/pages/loginPage/bloc/login_state.dart';
@@ -7,7 +7,6 @@ import 'package:stryn_esport/pages/registration/forgot_password/forgot_password_
 import 'package:stryn_esport/pages/registration/stageOne/registration_stage_one.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 import 'package:stryn_esport/styles/text_input_style.dart';
-
 import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';

@@ -2,12 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/registration/stageTwo/bloc/registration_stage_two_state.dart';
-
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
-
 class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
-  RegistrationStageTwoCubit({required this.authenticationRepository, required this.email, required this.password}) : super(const RegistrationStageTwoState());
+  RegistrationStageTwoCubit(
+      {required this.authenticationRepository,
+      required this.email,
+      required this.password})
+      : super(const RegistrationStageTwoState());
   final String email;
   final String password;
   final AuthenticationRepository authenticationRepository;
@@ -27,6 +29,7 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
+
   void lastNameChange(String value) {
     final lastName = Name.dirty(value);
     emit(
@@ -42,6 +45,7 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
+
   void phoneNumberChange(String value) {
     final phoneNumber = PhoneNumber.dirty(value);
     emit(
@@ -57,6 +61,7 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
+
   void ageChange(DateTime value) {
     emit(
       state.copyWith(
@@ -71,6 +76,7 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
+
   void addressChange(String value) {
     final address = Address.dirty(value);
     emit(
@@ -86,6 +92,7 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
+
   void postNumberChange(String value) {
     final postNumber = PostNumber.dirty(value);
     emit(
@@ -101,7 +108,6 @@ class RegistrationStageTwoCubit extends Cubit<RegistrationStageTwoState> {
       ),
     );
   }
-
 
   Future<void> signUpFormSubmitted() async {
     if (!state.status.isValidated) return;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:stryn_esport/pages/registration/stageTwo/bloc/registration_stage_two_cubit.dart';
@@ -25,7 +25,10 @@ class RegistrationFormStageTwo extends StatelessWidget {
 
   static Route route(String email, String password) {
     return MaterialPageRoute<void>(
-      builder: (_) => RegistrationFormStageTwo(email: email, password: password,),
+      builder: (_) => RegistrationFormStageTwo(
+        email: email,
+        password: password,
+      ),
     );
   }
 
@@ -80,29 +83,30 @@ class RegistrationFormStageTwo extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                    const VerticalSpacer(height: 22),
-                    _FirstNameInput(),
-                    const VerticalSpacer(),
-                    _LastNameInput(),
-                    const VerticalSpacer(),
-                    _PhoneInput(
-                        onEditComplete: (BuildContext blocContext) =>
-                            openAgePicker(blocContext)),
-                    const VerticalSpacer(),
-                    _AgeInput(
-                        onOpenAgeInput: (BuildContext blocContext) =>
-                            openAgePicker(blocContext)),
-                    const VerticalSpacer(),
-                    _AddressInput(),
-                    const VerticalSpacer(),
-                    _PostNumberInput(),
-                    const VerticalSpacer(),
-                    _SignUpButton()
-                  ]),
+                        const VerticalSpacer(height: 22),
+                        _FirstNameInput(),
+                        const VerticalSpacer(),
+                        _LastNameInput(),
+                        const VerticalSpacer(),
+                        _PhoneInput(
+                            onEditComplete: (BuildContext blocContext) =>
+                                openAgePicker(blocContext)),
+                        const VerticalSpacer(),
+                        _AgeInput(
+                            onOpenAgeInput: (BuildContext blocContext) =>
+                                openAgePicker(blocContext)),
+                        const VerticalSpacer(),
+                        _AddressInput(),
+                        const VerticalSpacer(),
+                        _PostNumberInput(),
+                        const VerticalSpacer(),
+                        _SignUpButton()
+                      ]),
                 ),
               )),
         ),

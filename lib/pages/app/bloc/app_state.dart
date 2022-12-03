@@ -1,7 +1,5 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:stryn_esport/models/user_model.dart';
-
 
 enum AppStatus {
   authenticated,

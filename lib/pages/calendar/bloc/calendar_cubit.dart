@@ -20,23 +20,25 @@ class CalendarCubit extends Cubit<CalendarState> {
   final String stationId;
   late StreamSubscription _eventsStreamController;
 
-
   /// Fetch all events for a station's calendar
   void getEvents(String stationId) {
-    _eventsStreamController = _calendarRepository.getEvents(stationId).listen((event) {
+    _eventsStreamController =
+        _calendarRepository.getEvents(stationId).listen((event) {
       emit(state.copyWith(
         events: event,
         status: CalendarStatus.success,
       ));
     });
   }
+
   /// Adds event to a station's calendar
   Future<bool> addEvent(Station station, DateTime from) async {
     DateTime to = from.add(const Duration(hours: 2));
     try {
-      await _calendarRepository.addEvent(station, from, to, _user.id, _user.firstName!);
+      await _calendarRepository.addEvent(
+          station, from, to, _user.id, _user.firstName!);
       return true;
-    } on FirebaseException catch(e) {
+    } on FirebaseException catch (e) {
       return false;
     }
   }
@@ -46,15 +48,17 @@ class CalendarCubit extends Cubit<CalendarState> {
     try {
       await _calendarRepository.removeEvent(station, booking, _user.id);
       return true;
-    } on FirebaseException catch(e) {
+    } on FirebaseException catch (e) {
       return false;
     }
   }
+
   /// Used to check the number of bookings the user has in a particular day
   /// We allow 2 bookings per day
   Future<bool> checkNrOfEventsInADay(Station station, DateTime date) async {
-    List<Booking> bookings = await _calendarRepository.getMyEventsByDay(_user.id, stationId, date);
-    if(bookings.length >= 2) {
+    List<Booking> bookings =
+        await _calendarRepository.getMyEventsByDay(_user.id, stationId, date);
+    if (bookings.length >= 2) {
       return false;
     } else {
       return true;

@@ -1,16 +1,13 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/pages/calendar/calendar_utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class AddEventDialogContent extends StatelessWidget {
-  const AddEventDialogContent(
-      {Key? key,
-        required this.markAsBusy,
-        required this.details,
-        })
-      : super(key: key);
+  const AddEventDialogContent({
+    Key? key,
+    required this.markAsBusy,
+    required this.details,
+  }) : super(key: key);
   final bool markAsBusy;
   final CalendarTapDetails details;
 

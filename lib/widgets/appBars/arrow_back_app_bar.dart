@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
-
-class ArrowBackAppBar extends StatelessWidget with PreferredSizeWidget{
+class ArrowBackAppBar extends StatelessWidget with PreferredSizeWidget {
   const ArrowBackAppBar(
       {required this.onBackClick, required this.headerText, Key? key})
       : super(key: key);
   final void Function() onBackClick;
   final String headerText;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(

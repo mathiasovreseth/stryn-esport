@@ -1,13 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
-import 'package:stryn_esport/pages/porfilePage/bloc/profile_cubit.dart';
-import 'package:stryn_esport/pages/porfilePage/bloc/profile_state.dart';
+import 'package:stryn_esport/pages/profilePage/bloc/profile_cubit.dart';
+import 'package:stryn_esport/pages/profilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
 import 'package:stryn_esport/repositories/firebase_calendar_repository.dart';
 import 'package:stryn_esport/widgets/custom_bullet_list.dart';

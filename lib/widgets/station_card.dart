@@ -19,7 +19,8 @@ class StationCard extends StatelessWidget {
       ),
       child: InkWell(
         splashColor: Colors.black.withAlpha(80),
-        onTap: () => Navigator.of(context).push(CalendarPage.route(station: station)),
+        onTap: () =>
+            Navigator.of(context).push(CalendarPage.route(station: station)),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -27,19 +28,18 @@ class StationCard extends StatelessWidget {
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.35), BlendMode.darken),
               child: CachedNetworkImageContainer(
-                imageUrl:  station.image,
+                imageUrl: station.image,
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 8),
+                margin: const EdgeInsets.only(top: 8),
                 child: Text(
                   station.name,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 18.0,
                   ),
-                )
-            ),
+                )),
           ],
         ),
       ),

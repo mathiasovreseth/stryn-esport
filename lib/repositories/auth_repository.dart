@@ -1,10 +1,12 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:stryn_esport/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:stryn_esport/models/user_model.dart';
+
 import '../pages/app/cacheClient/cache_client.dart';
 
 /// Thrown during the logout process if a failure occurs.
@@ -48,20 +50,15 @@ class AuthenticationRepository {
         .map((event) => MyUser.fromQueryDocumentSnapshot(event));
   }
 
-
-
   Future<void> resetPasswordLink(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch(e) {
+    } on FirebaseAuthException catch (e) {
       throw EmailFailure.fromCode(e.code);
-    } catch(_) {
+    } catch (_) {
       throw const EmailFailure();
-
     }
-
   }
-
 
   /// Signs in with the provided [email] and [password].
   ///
@@ -186,9 +183,13 @@ class EmailFailure implements Exception {
   factory EmailFailure.fromCode(String code) {
     switch (code) {
       case 'invalid-email':
-        return const EmailFailure('Email is not valid or badly formatted',);
+        return const EmailFailure(
+          'Email is not valid or badly formatted',
+        );
       case 'user-not-found':
-        return const EmailFailure('No user corresponding to the email',);
+        return const EmailFailure(
+          'No user corresponding to the email',
+        );
       default:
         return const EmailFailure();
     }

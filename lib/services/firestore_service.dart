@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   FirestoreService._();
-  static final instance = FirestoreService._();
 
+  static final instance = FirestoreService._();
 
   Stream<List<T>> collectionStream<T>({
     required String path,
@@ -14,7 +14,7 @@ class FirestoreService {
     return snapshots.map((snapshot) => snapshot.docs
         .map(
           (snapshot) => builder(snapshot.data()),
-    )
+        )
         .toList());
   }
 }

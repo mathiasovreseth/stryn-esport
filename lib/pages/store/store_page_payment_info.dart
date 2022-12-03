@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/models/store_item.dart';
 import 'package:stryn_esport/widgets/appBars/arrow_back_app_bar.dart';
 import 'package:stryn_esport/widgets/images/cache_image_container.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
-
 class StoreItemPaymentInfo extends StatelessWidget {
-  const StoreItemPaymentInfo({Key? key, required this.storeItem}) : super(key: key);
+  const StoreItemPaymentInfo({Key? key, required this.storeItem})
+      : super(key: key);
   final StoreItem storeItem;
+
   static Route route({required StoreItem storeItem}) {
     return MaterialPageRoute<void>(
       builder: (_) => StoreItemPaymentInfo(storeItem: storeItem),
@@ -32,6 +32,7 @@ class StoreItemPaymentInfo extends StatelessWidget {
     );
   }
 }
+
 Widget _buildContent(StoreItem item, BuildContext context) {
   return Container(
       alignment: Alignment.center,
@@ -49,11 +50,11 @@ Widget _buildContent(StoreItem item, BuildContext context) {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
-            child: Text("We don't currently have a payment option in the app. Please vipps xxx and include your name, the item and the size. Then pick up the item in our location",
+            child: Text(
+              "We don't currently have a payment option in the app. Please vipps xxx and include your name, the item and the size. Then pick up the item in our location",
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
           )
-
         ],
       ));
 }

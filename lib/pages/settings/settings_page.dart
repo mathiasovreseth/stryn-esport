@@ -25,7 +25,9 @@ class SettingsPage extends StatelessWidget {
           onBackClick: () => Navigator.of(context).pop()),
       body: Column(children: const [
         VerticalSpacer(height: 22),
-        _EditInformationButton( key: Key("edit-information-button"),),
+        _EditInformationButton(
+          key: Key("edit-information-button"),
+        ),
         VerticalSpacer(
           height: 18,
         ),
@@ -109,7 +111,8 @@ class _TermsOfserviceButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyTextButton(
-                onPressed: () => Navigator.of(context).push(TermsOfService.route()),
+                onPressed: () =>
+                    Navigator.of(context).push(TermsOfService.route()),
                 child: Text("Vilkår for bruk",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(
@@ -135,7 +138,8 @@ class _PrivacyPolicyButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyTextButton(
-                onPressed: () => Navigator.of(context).push(PrivacyPolicy.route()),
+                onPressed: () =>
+                    Navigator.of(context).push(PrivacyPolicy.route()),
                 child: Text("Personverns erklering",
                     style: Theme.of(context).textTheme.subtitle2)),
             Image.asset(

@@ -19,10 +19,9 @@ class FirebaseUserRepository extends UserRepository {
         "postNumber": updatedUser.postNumber,
       });
       return true;
-    } on FirebaseException catch(e) {
+    } on FirebaseException catch (e) {
       // TODO Do we get any error codes?
       return false;
     }
-
   }
 }

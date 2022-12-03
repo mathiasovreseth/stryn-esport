@@ -1,10 +1,6 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
-
-
-
 
 class RegistrationStageTwoState extends Equatable {
   const RegistrationStageTwoState({
@@ -28,7 +24,15 @@ class RegistrationStageTwoState extends Equatable {
   final String? errorMessage;
 
   @override
-  List<Object> get props => [firstName, lastName, phoneNumber, age ?? DateTime.now(), address, postNumber, status];
+  List<Object> get props => [
+        firstName,
+        lastName,
+        phoneNumber,
+        age ?? DateTime.now(),
+        address,
+        postNumber,
+        status
+      ];
 
   RegistrationStageTwoState copyWith({
     Name? firstName,

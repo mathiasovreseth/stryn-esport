@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -26,7 +25,6 @@ class ForgotPasswordForm extends StatefulWidget {
 }
 
 class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
-
   bool _success = false;
 
   @override
@@ -35,12 +33,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       appBar: ArrowBackAppBar(
           headerText: 'Glømt passord',
           onBackClick: () => Navigator.of(context).pop()),
-          resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (BuildContext context) => ForgotPasswordCubit(AuthenticationRepository()),
+        create: (BuildContext context) =>
+            ForgotPasswordCubit(AuthenticationRepository()),
         child: BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
-          listenWhen: (previous, current) =>
-          previous.status != current.status,
+          listenWhen: (previous, current) => previous.status != current.status,
           listener: (context, state) {
             if (state.status.isSubmissionSuccess) {
               ScaffoldMessenger.of(context)
@@ -48,25 +46,26 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 ..showSnackBar(infoSnackBar('Password reset sent'));
             } else if (state.status.isSubmissionFailure) {
               ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(createErrorSnackBar(state.errorMessage ?? 'Failure'));
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                    createErrorSnackBar(state.errorMessage ?? 'Failure'));
             }
           },
-        child: Form(
-          key: widget._formKey,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-            child: Column(
-              children: [
-                _EmailInput(),
-                Divider(height: 12, color: Theme.of(context).backgroundColor),
-                _ResettButton(),
-                Divider(height: 12, color: Theme.of(context).backgroundColor),
-              ],
+          child: Form(
+            key: widget._formKey,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+              child: Column(
+                children: [
+                  _EmailInput(),
+                  Divider(height: 12, color: Theme.of(context).backgroundColor),
+                  _ResettButton(),
+                  Divider(height: 12, color: Theme.of(context).backgroundColor),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -81,7 +80,8 @@ class _EmailInput extends StatelessWidget {
         return TextField(
           textInputAction: TextInputAction.next,
           key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) => context.read<ForgotPasswordCubit>().emailChange(email),
+          onChanged: (email) =>
+              context.read<ForgotPasswordCubit>().emailChange(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
             hintText: 'E-post...',
@@ -100,17 +100,20 @@ class _ResettButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-        buildWhen: (previous, current) => previous.email != current.email,
-        builder: (context, state) {
-          return state.status.isSubmissionInProgress
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return state.status.isSubmissionInProgress
             ? const LoadingIndicator()
-                : ElevatedButton(
+            : ElevatedButton(
                 key: const Key('forgot_password_form_submit'),
-                onPressed: state.status.isValidated ? () {
-                    context.read<ForgotPasswordCubit>().sendEmail();
-                  } : null,
-                child: const Text('Send nytt passord'),);
-
-    },);
+                onPressed: state.status.isValidated
+                    ? () {
+                        context.read<ForgotPasswordCubit>().sendEmail();
+                      }
+                    : null,
+                child: const Text('Send nytt passord'),
+              );
+      },
+    );
   }
 }

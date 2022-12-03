@@ -1,6 +1,4 @@
-
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:stryn_esport/models/user_model.dart';
 
 abstract class AppEvent extends Equatable {
@@ -9,8 +7,10 @@ abstract class AppEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 // log out requested
 class AppLogoutRequested extends AppEvent {}
+
 // Auth state change
 class AppUserChanged extends AppEvent {
   const AppUserChanged(this.user);
@@ -20,10 +20,8 @@ class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user];
 }
+
 // initial user query
 class LoadUserInfo extends AppEvent {
   const LoadUserInfo();
 }
-
-
-

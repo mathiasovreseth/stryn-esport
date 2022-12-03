@@ -1,9 +1,6 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
-
-
 
 enum ConfirmPasswordValidationError { invalid }
 

@@ -27,6 +27,3 @@ class BecomeMemberPage extends StatelessWidget {
     );
   }
 }
-
-
-

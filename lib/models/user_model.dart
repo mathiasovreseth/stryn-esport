@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
@@ -31,13 +29,24 @@ class MyUser extends Equatable {
     this.postNumber,
     this.club,
     this.hasMembership,
-
   });
+
   /// Empty user which represents an unauthenticated user.
   static const empty = MyUser(id: '');
 
   @override
-  List<Object?> get props => [id, email, firstName, lastName, age, address, phoneNumber, postNumber, club, hasMembership];
+  List<Object?> get props => [
+        id,
+        email,
+        firstName,
+        lastName,
+        age,
+        address,
+        phoneNumber,
+        postNumber,
+        club,
+        hasMembership
+      ];
 
   /// Convenience getter to determine whether the current user is empty.
   bool get isEmpty => this == MyUser.empty;
@@ -67,9 +76,11 @@ class MyUser extends Equatable {
       phoneNumber: phoneNumber != null ? phoneNumber() : this.phoneNumber,
       postNumber: postNumber != null ? postNumber() : this.postNumber,
       club: club != null ? club() : this.club,
-      hasMembership: hasMembership != null ? hasMembership() : this.hasMembership,
+      hasMembership:
+          hasMembership != null ? hasMembership() : this.hasMembership,
     );
   }
+
   MyUser.fromQueryDocumentSnapshot(DocumentSnapshot snapshot)
       : id = snapshot.id,
         email = snapshot.get('email') ?? "undefined",
@@ -82,6 +93,7 @@ class MyUser extends Equatable {
         club = snapshot.get('club') ?? "Stryn",
         hasMembership = snapshot.get('hasMembership') ?? false;
 }
+
 /// template of what fields are required for updating a user document
 /// used when editing a user
 class UpdatedUser {

@@ -1,13 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
-
-
-
-
 
 String convertDateToText(CalendarTapDetails details) {
   DateTime date = details.date!;
@@ -27,6 +20,7 @@ void showNotOwnerSnackBar(BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
 void showToManyBookingsSnackBar(BuildContext context) {
   final SnackBar snackBar = SnackBar(
     duration: const Duration(seconds: 3),
@@ -39,7 +33,6 @@ void showToManyBookingsSnackBar(BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
-
 void showBookingRemovedSnackBar(BuildContext context) {
   final SnackBar snackBar = SnackBar(
     duration: const Duration(seconds: 1),
@@ -51,6 +44,7 @@ void showBookingRemovedSnackBar(BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
 void showBookingAddedSnackBar(BuildContext context) {
   final SnackBar snackBar = SnackBar(
     duration: const Duration(seconds: 1),
@@ -62,6 +56,7 @@ void showBookingAddedSnackBar(BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
 void showBookingErrorSnackBar(BuildContext context) {
   final SnackBar snackBar = SnackBar(
     duration: const Duration(seconds: 3),
@@ -73,7 +68,3 @@ void showBookingErrorSnackBar(BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
-
-
-
-

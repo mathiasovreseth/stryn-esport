@@ -43,7 +43,7 @@ Widget _buildContent(StoreItem item, BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildImageAndPrice(item,context),
+          _buildImageAndPrice(item, context),
           _buildDescriptionAndButton(item, context),
         ],
       ));
@@ -96,8 +96,8 @@ Widget _buildDescriptionAndButton(StoreItem item, BuildContext context) {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(item.description,
-            style: TextStyle(
-                fontSize: 16, color: Colors.black.withOpacity(0.85))),
+            style:
+                TextStyle(fontSize: 16, color: Colors.black.withOpacity(0.85))),
       ),
       const VerticalSpacer(height: 32),
       Padding(
@@ -110,5 +110,3 @@ Widget _buildDescriptionAndButton(StoreItem item, BuildContext context) {
     ],
   );
 }
-
-

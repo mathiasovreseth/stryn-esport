@@ -1,10 +1,7 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:stryn_esport/pages/registration/stageOne/bloc/registration_stage_one_state.dart';
-
 import 'package:stryn_esport/pages/registration/stageOne/bloc/registration_step_one_cubit.dart';
 import 'package:stryn_esport/pages/registration/stageTwo/registration_stage_two.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:stryn_esport/widgets/datePicker/date_picker_utils.dart';
 
-
 class CustomPicker extends CommonPickerModel {
   String digits(int value, int length) {
     return '$value'.padLeft(length, "0");
   }
+
   String text(int value, int length) {
     String month = convertMontIndexToString(value);
     return month.padLeft(length, "0");
@@ -64,9 +64,6 @@ class CustomPicker extends CommonPickerModel {
   @override
   DateTime finalTime() {
     return DateTime.utc(
-        currentLeftIndex(),
-        currentMiddleIndex(),
-        currentRightIndex()
-    );
+        currentLeftIndex(), currentMiddleIndex(), currentRightIndex());
   }
 }
