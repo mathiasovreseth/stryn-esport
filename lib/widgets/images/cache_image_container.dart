@@ -17,7 +17,7 @@ class CachedNetworkImageContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
           ),
         ),
       ),
