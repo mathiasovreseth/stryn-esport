@@ -8,6 +8,7 @@ enum ProfileStatus {
   failure,
 }
 
+/// Contains the state of current bookings and a status
 class ProfileState extends Equatable {
   const ProfileState(
       {this.myEvents = const [], this.status = ProfileStatus.initial});

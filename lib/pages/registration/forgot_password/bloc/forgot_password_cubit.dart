@@ -5,6 +5,7 @@ import 'package:stryn_esport/repositories/auth_repository.dart';
 import '../../../loginPage/utils/validation_config.dart';
 import 'forgot_password_state.dart';
 
+/// Contains events and state of the forgot password page
 class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   ForgotPasswordCubit(this._authenticationRepository)
       : super(const ForgotPasswordState());

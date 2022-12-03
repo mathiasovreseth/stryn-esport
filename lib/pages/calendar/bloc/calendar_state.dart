@@ -8,6 +8,7 @@ enum CalendarStatus {
   success,
 }
 
+// Contains the current bookings and a status for a stations calendar
 class CalendarState extends Equatable {
   const CalendarState(
       {this.events = const [], this.status = CalendarStatus.initial});

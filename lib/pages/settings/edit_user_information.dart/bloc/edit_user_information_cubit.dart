@@ -5,6 +5,7 @@ import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/settings/edit_user_information.dart/bloc/edit_user_information_state.dart';
 import 'package:stryn_esport/repositories/user_repository.dart';
 
+/// Contains events and state for the edit user information page
 class EditUserInformationCubit extends Cubit<EditUserInformationState> {
   EditUserInformationCubit({required this.userRepository, required this.user})
       : super(EditUserInformationState(

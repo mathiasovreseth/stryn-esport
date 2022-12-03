@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/pages/bookingPage/bloc/station_state.dart';
 import 'package:stryn_esport/repositories/station_repository.dart';
 
+/// Station cubit contains the state of the stations and methods for fetching the stations
 class StationCubit extends Cubit<StationsState> {
   StationCubit(this._database) : super(const StationsState()) {
     getStations();

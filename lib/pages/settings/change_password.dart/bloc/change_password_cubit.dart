@@ -6,6 +6,7 @@ import 'package:stryn_esport/pages/loginPage/utils/validation_config.dart';
 import 'package:stryn_esport/pages/settings/change_password.dart/bloc/change_password_state.dart';
 import 'package:stryn_esport/repositories/auth_repository.dart';
 
+/// Contains events and state for the change password page
 class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   ChangePasswordCubit(this._authenticationRepository, this._user)
       : super(const ChangePasswordState());
