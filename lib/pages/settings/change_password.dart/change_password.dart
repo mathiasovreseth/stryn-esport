@@ -11,6 +11,8 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+///Represents the change password page
+///Form where user inputs old and new password
 class ChangePasswordPage extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const ChangePasswordPage({Key? key});
@@ -40,7 +42,7 @@ class ChangePasswordPage extends StatelessWidget {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
                       ..showSnackBar(
-                        createSuccessSnackBar("Passord endret!", context),
+                        createSuccessSnackBar("Password changed!", context),
                       );
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();

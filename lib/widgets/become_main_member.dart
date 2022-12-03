@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/widgets/custom_bullet_list.dart';
 
+///Represents the become main member widget
+///Holds information about the membership
 class BecomeMainMemberWidget extends StatelessWidget {
   const BecomeMainMemberWidget({
     Key? key,

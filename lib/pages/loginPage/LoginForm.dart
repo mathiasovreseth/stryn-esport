@@ -11,6 +11,9 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+
+///Login form
+///Email and password
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -67,7 +70,7 @@ class LoginPage extends StatelessWidget {
                               Expanded(
                                 child: TextButton(
                                   child: Text(
-                                    "Glømt passord",
+                                    "Forgot password",
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -83,7 +86,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       TextButton(
                         child: Text(
-                          "Har du ikkje bruker? Registrer deg",
+                          "No user? Register here",
                           style:
                               TextStyle(color: Theme.of(context).primaryColor),
                         ),
@@ -112,7 +115,7 @@ class _TitleAndImage extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Velkommen til Stryn esport',
+          'Welcome to Stryn esport',
           style: TextStyle(
             fontSize: 22.0,
             color: Colors.black.withOpacity(0.85),
@@ -136,10 +139,10 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: textFormDecoration(
-            hintText: 'E-post...',
+            hintText: 'Email...',
             context: context,
             errorText: state.email.invalid ? 'invalid email' : null,
-            label: 'E-post',
+            label: 'Email',
             suffixIcon: 'assets/icons/email_small.svg',
           ),
         );
@@ -161,10 +164,10 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: textFormDecoration(
-            hintText: 'Passord...',
+            hintText: 'Password...',
             context: context,
             errorText: state.password.invalid ? 'invalid password' : null,
-            label: 'Passord',
+            label: 'Password',
             suffixIcon: 'assets/icons/lock_small.svg',
           ),
         );

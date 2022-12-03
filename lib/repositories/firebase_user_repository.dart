@@ -3,6 +3,9 @@ import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/repositories/user_repository.dart';
 import 'package:stryn_esport/services/api_path.dart';
 
+
+/// Firestore repository that manages the user accounts
+/// Implements the functions from UserRepository
 class FirebaseUserRepository extends UserRepository {
   @override
   Future<bool> editUser({required UpdatedUser updatedUser}) async {

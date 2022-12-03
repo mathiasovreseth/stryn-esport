@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+///Represents an instance of a station
 class Station extends Equatable {
   final String id;
   final String name;
@@ -16,6 +17,7 @@ class Station extends Equatable {
   @override
   List<Object?> get props => [id, name, active];
 
+  ///Creates a station from a firestore snapshot
   Station.fromQueryDocumentSnapshot(Map<String, dynamic> data)
       : id = data["id"],
         name = data["name"] ?? "",

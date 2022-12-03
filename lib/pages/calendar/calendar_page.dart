@@ -2,8 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stryn_esport/models/booking_models.dart';
-
-/// The app which hosts the home page which contains the calendar on it.
 import 'package:stryn_esport/models/station_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/calendar/bloc/calendar_cubit.dart';
@@ -15,6 +13,8 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+/// Represents the calendar view for booking a station
+/// Uses the syncfusion flutter calendar package
 class CalendarPage extends StatelessWidget {
   const CalendarPage({
     Key? key,
@@ -34,28 +34,29 @@ class CalendarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
-            child: ArrowBackAppBar(
-                headerText: station.name,
-                onBackClick: () => Navigator.of(context).pop()),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: ArrowBackAppBar(
+              headerText: station.name,
+              onBackClick: () => Navigator.of(context).pop()),
+        ),
+        body: BlocProvider(
+          create: (BuildContext context) => CalendarCubit(
+              FirebaseCalendarRepository(),
+              context.read<AppBloc>().state.user,
+              station.id),
+          child: BlocBuilder<CalendarCubit, CalendarState>(
+            builder: (context, state) {
+              if (state.status == CalendarStatus.success) {
+                final events = state.events;
+                return _Calendar(station: station, events: events);
+              } else {
+                return const LoadingIndicator();
+              }
+            },
           ),
-          body: BlocProvider(
-            create: (BuildContext context) => CalendarCubit(
-                FirebaseCalendarRepository(),
-                context.read<AppBloc>().state.user,
-                station.id),
-            child: BlocBuilder<CalendarCubit, CalendarState>(
-              builder: (context, state) {
-                if (state.status == CalendarStatus.success) {
-                  final events = state.events;
-                  return _Calendar(station: station, events: events);
-                } else {
-                  return const LoadingIndicator();
-                }
-              },
-            ),
-          )),
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,9 @@ import 'package:stryn_esport/repositories/station_repository.dart';
 import 'package:stryn_esport/services/api_path.dart';
 import 'package:stryn_esport/services/firestore_service.dart';
 
+
+/// Firestore repository that manages the stations
+/// Implements functions from StationRepository
 class FirebaseStationRepository extends StationRepository {
   final _service = FirestoreService.instance;
 

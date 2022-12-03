@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stryn_esport/widgets/custom_bullet_list.dart';
 
+///Represent the become supporting member widget
+///Holds information about supporting member
 class BecomeSupportMemberWidget extends StatelessWidget {
   const BecomeSupportMemberWidget({
     Key? key,

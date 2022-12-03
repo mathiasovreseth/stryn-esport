@@ -14,6 +14,8 @@ import 'package:stryn_esport/widgets/loading_indicator.dart';
 import 'package:stryn_esport/widgets/snackBars/errorSnackBar.dart';
 import 'package:stryn_esport/widgets/spacer.dart';
 
+///Represents the change user information page
+///Form where user can change user information
 class ChangeUserInformationPage extends StatelessWidget {
   ChangeUserInformationPage({
     Key? key,

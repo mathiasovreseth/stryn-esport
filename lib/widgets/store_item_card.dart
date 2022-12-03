@@ -3,6 +3,7 @@ import 'package:stryn_esport/models/store_item.dart';
 import 'package:stryn_esport/pages/store/store_item_page.dart';
 import 'package:stryn_esport/widgets/images/cache_image_container.dart';
 
+///Represents a single store item
 class StoreItemCard extends StatelessWidget {
   const StoreItemCard({Key? key, required this.item}) : super(key: key);
 
