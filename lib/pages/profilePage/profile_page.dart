@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:stryn_esport/models/user_model.dart';
 import 'package:stryn_esport/pages/app/bloc/app_bloc.dart';
 import 'package:stryn_esport/pages/app/bloc/app_state.dart';
+import 'package:stryn_esport/pages/becomeMemberPage/become_member_page.dart';
 import 'package:stryn_esport/pages/profilePage/bloc/profile_cubit.dart';
 import 'package:stryn_esport/pages/profilePage/bloc/profile_state.dart';
 import 'package:stryn_esport/pages/settings/settings_page.dart';
@@ -69,11 +70,11 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       state.user.hasMembership!
                           ? _bookings()
-                          : _becomeMemberInfo()
+                          : _becomeMemberInfo(context)
                     ],
                   );
                 }
-                return _becomeMemberInfo();
+                return _becomeMemberInfo(context);
               },
             ),
           ],
@@ -92,14 +93,16 @@ class ProfilePage extends StatelessWidget {
 
   ///information about advantages and how to become a member
   ///is loaded if user is not a member
-  Widget _becomeMemberInfo() {
-    return Column(children: [
+  Widget _becomeMemberInfo(BuildContext context) {
+    return Column(
+        children: [
       const Text(
         "Become member",
         style: TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
       ),
       Container(
+
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -107,14 +110,25 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         margin: const EdgeInsets.only(top: 16),
-        child: Column(children: <Widget>[
-          const Text("Advantages",
-              style: TextStyle(color: Colors.black, fontSize: 20)),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+          const VerticalSpacer(height: 8),
+          const Align(
+            alignment: Alignment.center,
+            child:Text("Advantages",
+                style: TextStyle(color: Colors.black, fontSize: 20)),
+          ),
           BulletList(strings: bulletListAdvantages),
+          ElevatedButton(
+              onPressed: () => Navigator.of(context).push(BecomeMemberPage.route()),
+              child: const Text("Become member"))
+
         ]),
-      )
-    ]);
+      ),
+        ]);
   }
+
 
   ///Displays the upcoming bookings of the user
   Widget _bookings() {
@@ -131,8 +145,6 @@ class ProfilePage extends StatelessWidget {
       },
       builder: (context, state) {
         if (state.status == ProfileStatus.success) {
-          print(state.myEvents.length);
-          print("asdasjkdaskjdkjasdjkaskjdaskjdkjasdkjasjkd");
           if (state.myEvents.isEmpty) {
             print(state.myEvents.length);
             return _emptyBookings();
