@@ -19,8 +19,8 @@ import '../../models/booking_models.dart';
 ///Profile page in the application
 ///Holds an overview of the users bookings
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key}) : super(key: key);
-
+  ProfilePage({Key? key, required this.onBecomeMemberClick}) : super(key: key);
+  final VoidCallback onBecomeMemberClick;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,11 +70,11 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       state.user.hasMembership!
                           ? _bookings()
-                          : _becomeMemberInfo(context)
+                          : _becomeMemberInfo(context, () => onBecomeMemberClick())
                     ],
                   );
                 }
-                return _becomeMemberInfo(context);
+                return _becomeMemberInfo(context,  () => onBecomeMemberClick());
               },
             ),
           ],
@@ -93,7 +93,7 @@ class ProfilePage extends StatelessWidget {
 
   ///information about advantages and how to become a member
   ///is loaded if user is not a member
-  Widget _becomeMemberInfo(BuildContext context) {
+  Widget _becomeMemberInfo(BuildContext context, VoidCallback onBecomeMemberClick) {
     return Column(
         children: [
       const Text(
@@ -121,7 +121,7 @@ class ProfilePage extends StatelessWidget {
           ),
           BulletList(strings: bulletListAdvantages),
           ElevatedButton(
-              onPressed: () => Navigator.of(context).push(BecomeMemberPage.route()),
+              onPressed: onBecomeMemberClick,
               child: const Text("Become member"))
 
         ]),

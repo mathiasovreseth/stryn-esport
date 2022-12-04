@@ -34,6 +34,7 @@ class _NavigationPage extends State<NavigationPage> {
     _pages = [
       PersistantTab(
         child: ProfilePage(
+          onBecomeMemberClick: () => _onItemTapped(1),
           key: const PageStorageKey('profilePage'),
         ),
       ),
