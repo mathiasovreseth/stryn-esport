@@ -16,10 +16,18 @@ class ProfileCubit extends Cubit<ProfileState> {
   /// Fetch all events for a station's calendar
   void getMyEvents() {
     _calendarRepository.getMyEvents(_user.id).listen((event) {
-      emit(state.copyWith(
-        myEvents: event,
-        status: ProfileStatus.success,
-      ));
+      if(event.isEmpty) {
+        emit(state.copyWith(
+          myEvents: [],
+          status: ProfileStatus.success,
+        ));
+      } else {
+        emit(state.copyWith(
+          myEvents: event,
+          status: ProfileStatus.success,
+        ));
+      }
+
     });
   }
 }

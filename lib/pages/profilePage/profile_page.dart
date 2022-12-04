@@ -118,10 +118,22 @@ class ProfilePage extends StatelessWidget {
   ///Displays the upcoming bookings of the user
   Widget _bookings() {
     return BlocBuilder<ProfileCubit, ProfileState>(
-      buildWhen: (prev, next) => prev.myEvents.length != next.myEvents.length,
+      buildWhen: (prev, next) {
+        bool shouldBuild = false;
+        if(prev.myEvents.length != next.myEvents.length) {
+           shouldBuild = true;
+        }
+        if(prev.status != next.status) {
+          shouldBuild = true;
+        }
+        return shouldBuild;
+      },
       builder: (context, state) {
         if (state.status == ProfileStatus.success) {
+          print(state.myEvents.length);
+          print("asdasjkdaskjdkjasdjkaskjdaskjdkjasdkjasjkd");
           if (state.myEvents.isEmpty) {
+            print(state.myEvents.length);
             return _emptyBookings();
           } else {
             return Column(mainAxisSize: MainAxisSize.min, children: [
@@ -171,7 +183,7 @@ class ProfilePage extends StatelessWidget {
             height: 16,
           ),
           Text(
-            "You have none active bookings",
+            "You have no active bookings",
             style:
                 TextStyle(color: Colors.black.withOpacity(0.85), fontSize: 14),
           )
