@@ -120,10 +120,13 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(color: Colors.black, fontSize: 20)),
           ),
           BulletList(strings: bulletListAdvantages),
-          ElevatedButton(
-              onPressed: onBecomeMemberClick,
-              child: const Text("Become member"))
-
+          Padding(
+            padding: const  EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            child: ElevatedButton(
+                onPressed: onBecomeMemberClick,
+                child: const Text("Become member"))
+            ,
+          )
         ]),
       ),
         ]);
@@ -146,7 +149,6 @@ class ProfilePage extends StatelessWidget {
       builder: (context, state) {
         if (state.status == ProfileStatus.success) {
           if (state.myEvents.isEmpty) {
-            print(state.myEvents.length);
             return _emptyBookings();
           } else {
             return Column(mainAxisSize: MainAxisSize.min, children: [
