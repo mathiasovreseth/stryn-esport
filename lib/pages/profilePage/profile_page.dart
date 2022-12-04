@@ -15,7 +15,6 @@ import 'package:stryn_esport/widgets/spacer.dart';
 
 import '../../models/booking_models.dart';
 
-
 ///Profile page in the application
 ///Holds an overview of the users bookings
 class ProfilePage extends StatelessWidget {
@@ -54,7 +53,7 @@ class ProfilePage extends StatelessWidget {
   Widget _buildContent() {
     return Padding(
         padding:
-            const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 12),
+            const EdgeInsets.only(left: 24, right: 24, top: 30, bottom: 12),
         child: ListView(
           children: [
             _UserTitleImage(),
@@ -102,9 +101,11 @@ class ProfilePage extends StatelessWidget {
       ),
       Container(
         decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), bottomLeft: Radius.circular(10))),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
         margin: const EdgeInsets.only(top: 16),
         child: Column(children: <Widget>[
           const Text("Advantages",
@@ -120,10 +121,10 @@ class ProfilePage extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (prev, next) {
         bool shouldBuild = false;
-        if(prev.myEvents.length != next.myEvents.length) {
-           shouldBuild = true;
+        if (prev.myEvents.length != next.myEvents.length) {
+          shouldBuild = true;
         }
-        if(prev.status != next.status) {
+        if (prev.status != next.status) {
           shouldBuild = true;
         }
         return shouldBuild;
