@@ -17,7 +17,7 @@ The most important functionality of the app is the ability to book gaming statio
 - Be able to find general information about membership and the different gaming stations.
 
 ## Images
-
+All images for gaming sation should be 16/9 aspect ratio. 
 
 ## Icons
 
